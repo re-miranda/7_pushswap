@@ -21,8 +21,6 @@ int	main(int argc, char *argv[])
 	stacks = create_stacks(argc);
 	fill_stacks(argc - 1, argv + 1, stacks);
 	// find_solution();
-	// print_solution();
-	ft_printf("%i %i %i 0", stacks[0], stacks[1], stacks[2]);
 	free_all(stacks);
 	return (0);
 }

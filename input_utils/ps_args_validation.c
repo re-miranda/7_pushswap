@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	check_duplicates(int *stacks, int i)
+static void	check_duplicates(int *stacks, int i)
 {
 	int	j;
 
@@ -28,8 +28,10 @@ void	check_duplicates(int *stacks, int i)
 	}
 }
 
-void	test_intovf(char *str, int *stacks)
+static void	test_intovf(char *str, int *stacks)
 {
+	while (!ft_isdigit(*str))
+		str++;
 	while (*str)
 	{
 		if (*str != '0')
