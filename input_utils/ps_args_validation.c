@@ -12,16 +12,47 @@
 
 #include "../push_swap.h"
 
-void	fill_stacks(int i, char *argv[], int *stacks)
+void	check_duplicates(int *stacks, int i)
 {
-	while (i--)
+	int	j;
+
+	j = 0;
+	while (j < i)
 	{
-		stacks[i] = ft_atoi(argv[i]);
-		if (stacks[i] == 0 && argv[i][0] != '0')
+		if (stacks[j] == stacks[i])
+		{
+			free_all(stacks);
+			exit_error(5);
+		}
+		j++;
+	}
+}
+
+void	test_intovf(char *str, int *stacks)
+{
+	while (*str)
+	{
+		if (*str != '0')
 		{
 			free_all(stacks);
 			exit_error(4);
 		}
+		str++;
+	}
+}
+
+void	fill_stacks(int i, char *argv[], int *stacks)
+{
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		stacks[j] = ft_atoi(argv[j]);
+		if (stacks[j] == 0)
+			test_intovf(argv[j], stacks);
+		check_duplicates(stacks, j);
+		j++;
 	}
 }
 
