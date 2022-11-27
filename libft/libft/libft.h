@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 00:01:24 by coder             #+#    #+#             */
-/*   Updated: 2022/10/28 13:25:14 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/28 00:44:30 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 
 int		ft_atoi(const char *str);
+int		ft_atoi_safe(const char *str, int	*ptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nelem, size_t elsize);
 int		ft_isalnum(int c);

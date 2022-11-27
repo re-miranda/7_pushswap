@@ -15,6 +15,18 @@ The ft_atoi() function returns the result of the conversion, unless the value wo
 ### ERRORS
 No errors are defined.
 
+## `ft_atoi_safe (NEW)`
+_`int	ft_atoi_safe(const char *str, int	*ptr)`_
+### DESCRIPTION
+The ft_atoi_safe() function converts the initial portion of the string pointed to by str to int.  
+The call ft_atoi_safe(str, ptr) shall be equivalent to ft_atoi(str) except that ft_atoi_safe() handles errors. This behavior is defined in ERRORS.  
+The string may begin with an arbitrary amount of white space (as determined by isspace(3)) followed by a single optional '+' or '-' sign.
+The remainder of the string is converted to an int value in the obvious manner, stopping at the first character which is not a valid digit in the given base.  
+### RETURN VALUE
+The ft_atoi_safe() function returns 0, on success, or 1, in failure (see ERRORS); The result of the conversion is stored inside ptr.
+### ERRORS
+If the the value would underflow or overflow, the function shall return 1, and no value is stored in ptr.
+
 ## `ft_bzero`
 _`void	ft_bzero(void *s, size_t n)`_
 ### DESCRIPTION
