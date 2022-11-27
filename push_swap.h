@@ -16,9 +16,7 @@
 # include "libft/libft_gnl_printf.h"
 
 void	check_args(int argc, char *argv[]);
-int		*create_stacks(int argc);
-void	fill_stacks(int i, char *argv[], int *stacks);
+int		*create_array(int argc, char *argv[]);
 void	exit_error(int nb);
-void	free_all(int *stacks);
 
 #endif

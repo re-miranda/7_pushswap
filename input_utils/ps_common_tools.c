@@ -12,12 +12,6 @@
 
 #include "../push_swap.h"
 
-void	free_all(int *stacks)
-{
-	if (stacks)
-		free(stacks);
-}
-
 void	exit_error(int nb)
 {
 	ft_putendl_fd("Error", 2);

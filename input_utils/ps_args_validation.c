@@ -12,76 +12,76 @@
 
 #include "../push_swap.h"
 
-static void	check_duplicates(int *stacks, int i)
+static void	check_duplicates(int *array, int i)
 {
 	int	j;
 
 	j = 0;
 	while (j < i)
 	{
-		if (stacks[j] == stacks[i])
+		if (array[j] == array[i])
 		{
-			free_all(stacks);
+			free(array);
 			exit_error(5);
 		}
 		j++;
 	}
 }
 
-static void	test_intovf(char *str, int *stacks)
+static int	test_int_overflow(char *str)
 {
 	while (!ft_isdigit(*str))
 		str++;
 	while (*str)
 	{
 		if (*str != '0')
-		{
-			free_all(stacks);
-			exit_error(4);
-		}
+			return (1);
 		str++;
 	}
+	return (0);
 }
 
-void	fill_stacks(int i, char *argv[], int *stacks)
+static void	fill_array(const int size, char *argv[], int *array)
 {
 	int	j;
 
 	j = 0;
-	while (j < i)
+	while (j < size)
 	{
-		stacks[j] = ft_atoi(argv[j]);
-		if (stacks[j] == 0)
-			test_intovf(argv[j], stacks);
-		check_duplicates(stacks, j);
+		array[j] = ft_atoi(argv[j]);
+		if (array[j] == 0 && test_int_overflow(argv[j]))
+		{
+			free(array);
+			exit_error(4);
+		}
+		check_duplicates(array, j);
 		j++;
 	}
 }
 
-int	*create_stacks(int argc)
+int	*create_array(int argc, char *argv[])
 {
-	int	*int_array;
+	int	*array;
 
-	int_array = malloc(sizeof(int) * argc - 1);
-	if (!int_array)
+	array = malloc(sizeof(int) * argc - 1);
+	if (!array)
 		exit(3);
-	return (int_array);
+	fill_array(argc - 1, argv + 1, array);
+	return (array);
 }
 
 void	check_args(int argc, char *argv[])
 {
-	int	i;
 	int	j;
 
-	i = argc;
 	if (argc < 3)
 		exit_error(1);
-	while (--i)
+	while (--argc)
 	{
 		j = 0;
-		while (argv[i][j])
+		while (argv[argc][j])
 		{
-			if (!ft_isdigit(argv[i][j]) && argv[i][j] != '-')
+			if (!ft_isdigit(argv[argc][j]) && argv[argc][j] != '-')
 				exit_error(2);
 			j++;
 		}

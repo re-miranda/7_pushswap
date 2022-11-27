@@ -12,15 +12,20 @@
 
 #include "push_swap.h"
 
+static int	*get_input(int argc, char *argv[])
+{
+	int	*output_array;
+
+	check_args(argc, argv);
+	output_array = create_array(argc, argv);
+	return (output_array);
+}
+
 int	main(int argc, char *argv[])
 {
-	int	*stacks;
+	int	*int_array;
 
-	stacks = NULL;
-	check_args(argc, argv);
-	stacks = create_stacks(argc);
-	fill_stacks(argc - 1, argv + 1, stacks);
-	// find_solution();
-	free_all(stacks);
+	int_array = get_input(argc, argv);
+	free(int_array);
 	return (0);
 }
