@@ -32,4 +32,15 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test: all
+	-./push_swap -01 442 2147483647
+	-./push_swap -01 442 2147483648
+	-./push_swap -01 442 -2147483648
+	-./push_swap -01 442 -2147483649
+	-./push_swap -01 442 2147483647 442
+	-./push_swap -01 442 2147483647 -1
+	-./push_swap -01 442 2147483647 -0001
+
+retest: re test
+
+.PHONY: all clean fclean re teste retest
