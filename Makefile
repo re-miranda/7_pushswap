@@ -2,8 +2,9 @@ NAME = push_swap
 
 INCLUDES = push_swap.h
 SRCS = push_swap.c \
-	./input_utils/pusw_get_array.c \
-	./input_utils/pusw_common_tools.c
+	./utils/pusw_get_array.c \
+	./utils/pusw_common_tools.c \
+	./utils/pusw_get_stack.c
 OBJS = $(SRCS:%.c=%.o)
 
 CFLAGS = -Wall -Wextra -Werror -g
