@@ -6,13 +6,19 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:02:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/23 02:23:40 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/28 01:05:18 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	check_duplicates(int *array, int i)
+static void	exit_error(int nb)
+{
+	ft_putendl_fd("Error", 2);
+	exit(nb);
+}
+
+static int	check_duplicates(int *array, int i)
 {
 	int	j;
 
@@ -20,23 +26,8 @@ static void	check_duplicates(int *array, int i)
 	while (j < i)
 	{
 		if (array[j] == array[i])
-		{
-			free(array);
-			exit_error(5);
-		}
-		j++;
-	}
-}
-
-static int	test_int_overflow(char *str)
-{
-	while (!ft_isdigit(*str))
-		str++;
-	while (*str)
-	{
-		if (*str != '0')
 			return (1);
-		str++;
+		j++;
 	}
 	return (0);
 }
@@ -48,29 +39,16 @@ static void	fill_array(const int size, char *argv[], int *array)
 	j = 0;
 	while (j < size)
 	{
-		array[j] = ft_atoi(argv[j]);
-		if (array[j] == 0 && test_int_overflow(argv[j]))
+		if (ft_atoi_safe(argv[j], &array[j]) || check_duplicates(array, j))
 		{
 			free(array);
 			exit_error(4);
 		}
-		check_duplicates(array, j);
 		j++;
 	}
 }
 
-int	*create_array(int argc, char *argv[])
-{
-	int	*array;
-
-	array = malloc(sizeof(int) * argc - 1);
-	if (!array)
-		exit(3);
-	fill_array(argc - 1, argv + 1, array);
-	return (array);
-}
-
-void	check_args(int argc, char *argv[])
+static void	check_args(int argc, char *argv[])
 {
 	int	j;
 
@@ -86,4 +64,16 @@ void	check_args(int argc, char *argv[])
 			j++;
 		}
 	}
+}
+
+int	*get_array(int argc, char *argv[])
+{
+	int	*array;
+
+	check_args(argc, argv);
+	array = malloc(sizeof(int) * argc - 1);
+	if (!array)
+		exit(3);
+	fill_array(argc - 1, argv + 1, array);
+	return (array);
 }

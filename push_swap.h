@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/23 02:20:35 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/28 01:05:26 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft/libft_gnl_printf.h"
 
-void	check_args(int argc, char *argv[]);
-int		*create_array(int argc, char *argv[]);
-void	exit_error(int nb);
+int		*get_array(int argc, char *argv[]);
 
 #endif
