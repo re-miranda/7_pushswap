@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 02:03:58 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/30 03:12:36 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/30 04:12:06 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	pusw_pa(t_node *stack[2])
 {
 	if (pusw_px(stack, 0))
 		return (1);
+	ft_putendl_fd("pa", 1);
 	return (0);
 }
 
@@ -61,5 +62,6 @@ int	pusw_pb(t_node *stack[2])
 {
 	if (pusw_px(stack, 1))
 		return (1);
+	ft_putendl_fd("pb", 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 03:50:06 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/28 05:11:37 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/30 04:22:45 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	array_to_stack(int *int_array, int size, t_node *head)
 	}
 }
 
-static t_node	*get_circular_liked_nodes(size)
+static t_node	*get_circular_liked_nodes(int size)
 {
 	t_node	*head;
 	t_node	*current;
@@ -49,5 +49,4 @@ t_node	*get_stack(int *int_array, int size)
 	stack = get_circular_liked_nodes(size);
 	array_to_stack(int_array, size, stack);
 	return (stack);
-	
 }

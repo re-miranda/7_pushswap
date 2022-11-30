@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pusw_common_tools.c                                :+:      :+:    :+:   */
+/*   pusw_ss_tools.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 02:03:58 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/30 02:11:00 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/30 04:21:06 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	pusw_sa(t_node *stack[2])
 {
 	if (pusw_sx(stack, 0))
 		return (1);
+	ft_putendl_fd("sa", 1);
 	return (0);
 }
 
@@ -37,14 +38,16 @@ int	pusw_sb(t_node *stack[2])
 {
 	if (pusw_sx(stack, 1))
 		return (1);
+	ft_putendl_fd("sb", 1);
 	return (0);
 }
 
 int	pusw_ss(t_node *stack[2])
 {
-	if (pusw_sa(stack))
+	if (pusw_sx(stack, 0))
 		return (1);
-	if (pusw_sb(stack))
+	if (pusw_sx(stack, 1))
 		return (1);
+	ft_putendl_fd("ss", 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:38 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/28 03:59:14 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/30 04:23:19 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 static void	free_stack(t_node *stack)
 {
 	stack->previus->next = NULL;
-	while(stack->next)
+	while (stack->next)
 	{
 		stack = stack->next;
 		free(stack->previus);

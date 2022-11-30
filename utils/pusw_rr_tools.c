@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 02:03:58 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/30 02:24:38 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/30 04:21:08 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	pusw_ra(t_node *stack[2])
 {
 	if (pusw_rx(stack, 0))
 		return (1);
+	ft_putendl_fd("ra", 1);
 	return (0);
 }
 
@@ -31,14 +32,16 @@ int	pusw_rb(t_node *stack[2])
 {
 	if (pusw_rx(stack, 1))
 		return (1);
+	ft_putendl_fd("rb", 1);
 	return (0);
 }
 
 int	pusw_rr(t_node *stack[2])
 {
-	if (pusw_ra(stack))
+	if (pusw_rx(stack, 0))
 		return (1);
-	if (pusw_rb(stack))
+	if (pusw_rx(stack, 1))
 		return (1);
+	ft_putendl_fd("rr", 1);
 	return (0);
 }
