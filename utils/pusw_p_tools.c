@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 02:03:58 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/30 04:12:06 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/11/30 04:28:03 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	stash_node(t_node	**stack)
 {
-	if (*stack->next == *stack)
+	if ((*stack)->next == *stack)
 		*stack = NULL;
 	else
 	{
-		*stack->previus->next = *stack->next;
-		*stack->next->previus = *stack->previus;
+		(*stack)->previus->next = (*stack)->next;
+		(*stack)->next->previus = (*stack)->previus;
 	}
 }
 
@@ -34,9 +34,9 @@ static void	pop_node(t_node	**stack, t_node *node)
 	else
 	{
 		node->next = *stack;
-		node->previus = *stack->previus;
-		*stack->previus->next = node;
-		*stack->previus = node;
+		node->previus = (*stack)->previus;
+		(*stack)->previus->next = node;
+		(*stack)->previus = node;
 		*stack = node;
 	}
 }
