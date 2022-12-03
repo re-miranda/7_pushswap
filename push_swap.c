@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:38 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/30 04:23:19 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/12/03 03:26:20 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char *argv[])
 
 	int_array = get_array(argc, argv);
 	stack = get_stack(int_array, argc - 1);
+	// perform_radix(stack);
+	// output_stack(stack);
 	free(int_array);
 	free_stack(stack);
 	ft_printf("DONE");
