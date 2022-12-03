@@ -5,13 +5,14 @@ SRCS = ./push_swap.c \
 	./utils/pusw_get_array.c \
 	./utils/pusw_get_stack.c \
 	./utils/pusw_output_stack.c \
+	./utils/pusw_perform_radix.c \
 	./utils/pusw_tools_p.c \
 	./utils/pusw_tools_rr.c \
 	./utils/pusw_tools_rrr.c \
 	./utils/pusw_tools_ss.c
 OBJS = $(SRCS:%.c=%.o)
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc $(CFLAGS)
 RM = rm -rf
 
