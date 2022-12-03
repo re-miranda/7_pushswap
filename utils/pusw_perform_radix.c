@@ -6,8 +6,13 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 03:22:10 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/12/03 03:22:24 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/12/03 03:33:22 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	perform_radix(t_node *stack)
+{
+	return ;
+}
