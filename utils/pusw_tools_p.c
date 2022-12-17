@@ -6,21 +6,26 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 03:23:35 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/12/03 07:45:46 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/12/17 04:05:18 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	stash_node(t_node	**stack)
+static t_node	*stash_node(t_node	**stack)
 {
+	t_node	*stash_node;
+
+	stash_node = *stack;
 	if ((*stack)->next == *stack)
 		*stack = NULL;
 	else
 	{
 		(*stack)->previus->next = (*stack)->next;
 		(*stack)->next->previus = (*stack)->previus;
+		*stack = (*stack)->next;
 	}
+	return (stash_node);
 }
 
 static void	pop_node(t_node **stack_dest, t_node *node)
@@ -43,11 +48,13 @@ static void	pop_node(t_node **stack_dest, t_node *node)
 
 static int	pusw_px(t_node **stack_origin, t_node **stack_dest)
 {
-	ft_printf("%i", (*stack_dest)->value);
-	if (!*stack_dest)
+	t_node	*swap;
+
+	ft_printf("(px%i)", (*stack_origin)->value);
+	if (!*stack_origin)
 		return (1);
-	pop_node(stack_dest, *stack_origin);
-	stash_node(stack_origin);
+	swap = stash_node(stack_origin);
+	pop_node(stack_dest, swap);
 	return (0);
 }
 

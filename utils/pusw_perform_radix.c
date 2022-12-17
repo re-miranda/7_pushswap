@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 03:22:10 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/12/03 07:48:24 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/12/17 03:49:45 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void	perform_radix(t_node *stack)
 
 	stack_a = stack;
 	stack_b = NULL;
-	counter = 8;
-	while (counter--)
+	counter = 0;
+	while (counter < 8)
 	{
 		ft_printf("1");
 		reference_node = stack_a->previus;
-		while (stack_a != reference_node)
+		while (reference_node != stack_a)
 		{
 			ft_printf("2");
+			ft_printf("value:(%i)", stack_a->value);
 			if ((stack_a->value >> counter) & 1)
 			{
-				ft_printf("2.0(%i)", stack_a->value);
-				reference_node = stack_a->previus;
+				ft_printf("2.0");
 				pusw_pb(&stack_a, &stack_b);
 			}
 			else
@@ -44,9 +44,12 @@ void	perform_radix(t_node *stack)
 		ft_printf("3");
 		if ((stack_a->value >> counter) & 1)
 			pusw_pb(&stack_a, &stack_b);
+		else
+			pusw_ra(&stack_a);
+		ft_printf("4");
 		while (stack_b)
 			pusw_pa(&stack_a, &stack_b);
-		ft_printf("4");
+		counter++;
 	}
 	
 }
