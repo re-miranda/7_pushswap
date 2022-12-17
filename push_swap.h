@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/12/17 03:46:30 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/12/17 05:52:42 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_node
 int		*get_array(int argc, char *argv[]);
 t_node	*get_stack(int *int_array, int size);
 void	output_stack(t_node *stack);
-void	perform_radix(t_node *stack);
+void	perform_radix(t_node **stack);
 int		pusw_pa(t_node **stack_a, t_node **stack_b);
 int		pusw_pb(t_node **stack_a, t_node **stack_b);
 int		pusw_ra(t_node **stack);
