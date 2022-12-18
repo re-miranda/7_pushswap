@@ -2,14 +2,14 @@ NAME = push_swap
 
 INCLUDES = ./push_swap.h
 SRCS = ./push_swap.c \
-	./utils/pusw_get_array.c \
-	./utils/pusw_get_stack.c \
-	./utils/pusw_output_stack.c \
-	./utils/pusw_perform_radix.c \
-	./utils/pusw_tools_p.c \
-	./utils/pusw_tools_rr.c \
-	./utils/pusw_tools_rrr.c \
-	./utils/pusw_tools_ss.c
+	./pusw_utils/pusw_get_array.c \
+	./pusw_utils/pusw_get_stack.c \
+	./pusw_utils/pusw_output_stack.c \
+	./pusw_sort_functions/pusw_perform_radix.c \
+	./pusw_sort_functions/pusw_tools_p.c \
+	./pusw_sort_functions/pusw_tools_rr.c \
+	./pusw_sort_functions/pusw_tools_rrr.c \
+	./pusw_sort_functions/pusw_tools_ss.c
 OBJS = $(SRCS:%.c=%.o)
 
 CFLAGS = -Wall -Wextra -Werror -g3
