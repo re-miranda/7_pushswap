@@ -1,5 +1,4 @@
 NAME = push_swap
-
 INCLUDES = ./push_swap.h
 SRCS = ./push_swap.c \
 	./pusw_utils/pusw_get_array.c \
@@ -12,6 +11,12 @@ SRCS = ./push_swap.c \
 	./pusw_sort_functions/pusw_tools_ss.c
 OBJS = $(SRCS:%.c=%.o)
 
+NAME_BONUS = push_swap_bonus
+INCLUDES_BONUS = ./pusw_bonus/push_swap_bonus.h
+SRCS_BONUS = ./pusw_bonus/push_swap_bonus.c \
+	./pusw_bonus/pusw_get_array_bonus.c
+OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
+
 CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc $(CFLAGS)
 RM = rm -rf
@@ -19,11 +24,18 @@ RM = rm -rf
 LIBFT_PATH = libft/
 LIBFT = $(LIBFT_PATH)libft.a
 
-all: $(LIBFT) $(OBJS)
+all: $(NAME)
+
+bonus: $(NAME) $(NAME_BONUS)
+
+%.o: %.c $(INCLUDES) $(INCLUDES_BONUS)
+	$(CC) -c $< -o $(<:%.c=%.o) -I$(LIBFT)
+
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_PATH) -lft
 
-%.o: %.c $(INCLUDES)
-	$(CC) -c $< -o $(<:%.c=%.o) -I$(LIBFT)
+$(NAME_BONUS): $(LIBFT) $(OBJS_BONUS)
+	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) -L$(LIBFT_PATH) -lft
 
 $(LIBFT):
 	make -C $(LIBFT_PATH) all
@@ -31,10 +43,12 @@ $(LIBFT):
 clean:
 	make -C $(LIBFT_PATH) clean
 	$(RM) $(OBJS)
+	$(RM) $(OBJS_BONUS)
 
 fclean: clean
 	make -C $(LIBFT_PATH) fclean
 	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 
 re: fclean all
 
