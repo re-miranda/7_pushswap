@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 03:22:10 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/12/18 06:14:55 by rmiranda         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:59:55 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@ static void	sort_n_byte_signed(t_node **stack_a, int byte_position)
 	reference_node = (*stack_a)->previus;
 	while (reference_node != (*stack_a))
 	{
-		if (((*stack_a)->value >> byte_position) & 1)
+		if (((*stack_a)->value >> byte_position) & 0b00000001)
 			pusw_pb(stack_a, &stack_b);
 		else
 			pusw_ra(stack_a);
 	}
-	if (((*stack_a)->value >> byte_position) & 1)
+	if (((*stack_a)->value >> byte_position) & 0b00000001)
 		pusw_pb(stack_a, &stack_b);
 	else
 		pusw_ra(stack_a);
-	ft_printf("<-\n");
 	while (stack_b)
 		pusw_pa(stack_a, &stack_b);
 }
@@ -44,12 +43,12 @@ static void	sort_n_byte(t_node **stack_a, int byte_position)
 	reference_node = (*stack_a)->previus;
 	while (reference_node != *stack_a)
 	{
-		if (((*stack_a)->value >> byte_position) & 1)
+		if (((*stack_a)->value >> byte_position) & 0b00000001)
 			pusw_ra(stack_a);
 		else
 			pusw_pb(stack_a, &stack_b);
 	}
-	if (((*stack_a)->value >> byte_position) & 1)
+	if (((*stack_a)->value >> byte_position) & 0b00000001)
 		pusw_ra(stack_a);
 	else
 		pusw_pb(stack_a, &stack_b);
