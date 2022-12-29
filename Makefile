@@ -81,4 +81,4 @@ test7:
 	diff tests/correct7.txt tests/output7.txt
 
 
-.PHONY: all clean fclean re teste retest
+.PHONY: all bonus clean fclean re teste retest
