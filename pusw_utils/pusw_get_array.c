@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 20:02:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/11/28 02:10:55 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/01/04 08:28:56 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	exit_error(int nb)
 {
 	ft_putendl_fd("Error", 2);
-	ft_putendl_fd("Error", 1);
 	exit(nb);
 }
 
