@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/05 22:07:30 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:20:49 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int		pusw_rr(t_node **stack_a, t_node **stack_b);
 int		pusw_rra(t_node **stack);
 int		pusw_rrb(t_node **stack);
 int		pusw_rrr(t_node **stack_a, t_node **stack_b);
-int		pusw_sa(t_node *stack[2]);
-int		pusw_sb(t_node *stack[2]);
-int		pusw_ss(t_node *stack[2]);
+int		pusw_sa(t_node **stack_a, t_node **stack_b);
+int		pusw_sb(t_node **stack_a, t_node **stack_b);
+int		pusw_ss(t_node **stack_a, t_node **stack_b);
 
 #endif
