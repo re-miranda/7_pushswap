@@ -6,13 +6,11 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:38 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/12/31 17:25:32 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:07:50 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	free_stack(t_node *stack);
 
 int	main(int argc, char *argv[])
 {
@@ -22,19 +20,7 @@ int	main(int argc, char *argv[])
 	int_array = get_array(argc, argv);
 	stack = get_stack(int_array, argc - 1);
 	perform_radix(&stack, 0);
-	// output_stack(stack);
 	free(int_array);
 	free_stack(stack);
 	return (0);
-}
-
-static void	free_stack(t_node *stack)
-{
-	stack->previus->next = NULL;
-	while (stack->next)
-	{
-		stack = stack->next;
-		free(stack->previus);
-	}
-	free(stack);
 }
