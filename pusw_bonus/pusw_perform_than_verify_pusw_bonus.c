@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 05:47:19 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/05 22:04:11 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:27:35 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,17 @@ void	perform_than_verify_pusw(t_node **stack_a)
 			pusw_rrb(&stack_b);
 		else if (!ft_strncmp(buffer, "rrr\n", 4))
 			pusw_rrr(stack_a, &stack_b);
+		else if (!ft_strncmp(buffer, "sa\n", 3))
+			pusw_sa(stack_a, &stack_b);
+		else if (!ft_strncmp(buffer, "sb\n", 3))
+			pusw_sb(stack_a, &stack_b);
+		else if (!ft_strncmp(buffer, "ss\n", 3))
+			pusw_ss(stack_a, &stack_b);
 		else
 		{
 			ft_printf("ERROR NO RULES(%s)\n", buffer);
 			exit_error_and_free_stacks(*stack_a, stack_b);
 		}
-			// pusw_sa(t_node *stack[2], 0);
-			// pusw_sb(t_node *stack[2], 0);
-			// pusw_ss(t_node *stack[2], 0);
 		free(buffer);
 		buffer = get_next_line(0);
 	}
