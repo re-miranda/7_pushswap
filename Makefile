@@ -1,20 +1,22 @@
-NAME = push_swap
-INCLUDES = ./push_swap.h
-SRCS = ./push_swap.c \
+SRCS_COMMON = ./pusw_utils/pusw_exit_functions.c \
 	./pusw_utils/pusw_get_array.c \
 	./pusw_utils/pusw_get_stack.c \
 	./pusw_utils/pusw_output_stack.c \
-	./pusw_sort_functions/pusw_perform_radix.c \
 	./pusw_sort_functions/pusw_tools_p.c \
 	./pusw_sort_functions/pusw_tools_rr.c \
 	./pusw_sort_functions/pusw_tools_rrr.c \
 	./pusw_sort_functions/pusw_tools_ss.c
+
+NAME = push_swap
+INCLUDES = ./push_swap.h
+SRCS = $(SRCS_COMMON) ./push_swap.c \
+	./pusw_sort_functions/pusw_perform_radix.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME_BONUS = push_swap_bonus
 INCLUDES_BONUS = ./pusw_bonus/push_swap_bonus.h
-SRCS_BONUS = ./pusw_bonus/push_swap_bonus.c \
-	./pusw_bonus/pusw_get_array_bonus.c
+SRCS_BONUS = $(SRCS_COMMON) ./pusw_bonus/push_swap_bonus.c \
+	./pusw_bonus/pusw_perform_than_verify_pusw_bonus.c
 OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 
 CFLAGS = -Wall -Wextra -Werror -g3
