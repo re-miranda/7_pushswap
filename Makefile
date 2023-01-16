@@ -6,6 +6,7 @@ SRCS_COMMON = ./pusw_utils/pusw_exit_functions.c \
 NAME = push_swap
 INCLUDES = ./push_swap.h
 SRCS = $(SRCS_COMMON) ./push_swap.c \
+	./pusw_sort_functions/sort_stack.c \
 	./pusw_sort_functions/pusw_perform_radix.c \
 	./pusw_sort_functions/pusw_tools_p.c \
 	./pusw_sort_functions/pusw_tools_rr.c \
