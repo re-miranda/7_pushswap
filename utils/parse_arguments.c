@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 04:38:07 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/15 13:57:44 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/16 00:38:58 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	***parse_arguments(int argc, char *argv[])
 	char	***parsed_values;
 
 	if (argc < 2)
-		exit_error(1);
+		exit(0);
 	c_index = 0;
 	parsed_values = ft_calloc(argc, sizeof(char **));
 	if (!parsed_values)
