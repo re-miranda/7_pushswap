@@ -1,7 +1,9 @@
-SRCS_COMMON = ./pusw_utils/pusw_exit_functions.c \
-	./pusw_utils/pusw_get_array.c \
-	./pusw_utils/pusw_get_stack.c \
-	./pusw_utils/pusw_output_stack.c
+SRCS_COMMON = ./utils/exit_functions.c \
+	./utils/parse_arguments.c \
+	./utils/get_stack.c \
+	./utils/get_next_node.c \
+	./utils/assert_stack_needs_sorting.c \
+	./utils/output_stack.c \
 
 NAME = push_swap
 INCLUDES = ./push_swap.h

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pusw_exit_functions.c                              :+:      :+:    :+:   */
+/*   exit_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 08:43:44 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/08 20:52:27 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:02:26 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	exit_error(int nb)
 	exit(nb);
 }
 
-void	free_stack(t_node *stack)
+void	*free_stack(t_node *stack)
 {
+	if (!stack)
+		return (NULL);
 	stack->previus->next = NULL;
 	while (stack->next)
 	{
@@ -27,22 +29,25 @@ void	free_stack(t_node *stack)
 		free(stack->previus);
 	}
 	free(stack);
+	return (NULL);
 }
 
-void	check_args(int argc, char *argv[])
+void	free_parse(char ***parsed_values)
 {
-	int	j;
+	int	split_index;
+	int	counter;
 
-	if (argc < 2)
-		exit_error(1);
-	while (--argc)
+	split_index = 0;
+	if (!parsed_values)
+		return ;
+	while (parsed_values[split_index])
 	{
-		j = 0;
-		while (argv[argc][j])
-		{
-			if (!ft_isdigit(argv[argc][j]) && argv[argc][j] != '-')
-				exit_error(2);
-			j++;
-		}
+		counter = 0;
+		while (parsed_values[split_index][counter])
+			free(parsed_values[split_index][counter++]);
+		free(parsed_values[split_index][counter]);
+		free(parsed_values[split_index]);
+		split_index++;
 	}
+	free(parsed_values);
 }

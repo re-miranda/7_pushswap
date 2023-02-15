@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pusw_output_stack.c                                :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/03 03:21:37 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/12/03 03:42:57 by rmiranda         ###   ########.fr       */
+/*   Created: 2023/01/22 01:53:52 by rmiranda          #+#    #+#             */
+/*   Updated: 2023/02/15 02:38:28 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "libft.h"
 
-void	output_stack(t_node *stack)
+int	ft_iswhitespace(int character)
 {
-	t_node	*last_stack_node;
-
-	last_stack_node = stack->previus;
-	while (stack != last_stack_node)
-	{
-		ft_printf("%i ", stack->value);
-		stack = stack->next;
-	}
-	ft_printf("%i\n", stack->value);
+	if (character == '\t' || character == '\n'
+		|| character == '\v' || character == '\f'
+		|| character == '\r' || character == ' ')
+		return (1);
+	return (0);
 }

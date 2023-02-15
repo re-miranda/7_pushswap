@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   pusw_output_stack.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 17:20:38 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/15 02:43:58 by rmiranda         ###   ########.fr       */
+/*   Created: 2022/12/03 03:21:37 by rmiranda          #+#    #+#             */
+/*   Updated: 2023/02/12 23:35:02 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	main(int argc, char *argv[])
+void	output_stack(t_node *stack)
 {
-	char	***parsed_values;
-	t_node	*stack;
+	t_node	*last_stack_node;
 
-	parsed_values = parse_arguments(argc, argv);
-	stack = get_stack(parsed_values);
-	free_parse(parsed_values);
-	if (assert_stack_needs_sorting(stack))
-		sort_stack(&stack, argc - 1);
-	free_stack(stack);
-	return (0);
+	last_stack_node = stack->previus;
+	while (stack != last_stack_node)
+	{
+		ft_printf("%i ", stack->value);
+		stack = stack->next;
+	}
+	ft_printf("%i\n", stack->value);
 }

@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 00:01:24 by coder             #+#    #+#             */
-/*   Updated: 2022/11/28 00:44:30 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/01/22 02:00:32 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int		ft_atoi(const char *str);
 int		ft_atoi_safe(const char *str, int	*ptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nelem, size_t elsize);
-int		ft_isalnum(int c);
-int		ft_isalpha(int c);
-int		ft_isascii(int c);
-int		ft_isdigit(int c);
-int		ft_isprint(int c);
+int		ft_isalnum(int character);
+int		ft_isalpha(int character);
+int		ft_isascii(int character);
+int		ft_isdigit(int character);
+int		ft_isprint(int character);
+int		ft_iswhitespace(int character);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);

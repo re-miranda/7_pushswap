@@ -6,15 +6,15 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:35:14 by rmiranda          #+#    #+#             */
-/*   Updated: 2022/04/14 01:17:46 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/01/22 02:00:55 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+int	ft_isprint(int character)
 {
-	if (c >= 32 && c < 127)
+	if (character >= 32 && character < 127)
 		return (1);
 	return (0);
 }

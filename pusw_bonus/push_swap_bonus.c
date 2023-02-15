@@ -18,13 +18,13 @@
 
 int	main(int argc, char *argv[])
 {
-	int		*int_array;
+	char	***parsed_values;
 	t_node	*stack;
 
-	int_array = get_array(argc, argv);
-	stack = get_stack(int_array, argc - 1);
+	parsed_values = parse_arguments(argc, argv);
+	stack = get_stack(parsed_values);
+	free_parse(parsed_values);
 	perform_than_verify_pusw(&stack);
-	free(int_array);
 	free_stack(stack);
 	ft_printf("OK\n");
 	return (0);

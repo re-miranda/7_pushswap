@@ -6,12 +6,15 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/16 05:44:42 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:59:13 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# define PARSE_EXIT_CODE 1
+# define STACK_EXIT_CODE 2
 
 # include "libft/libft_gnl_printf.h"
 
@@ -22,11 +25,16 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-void	free_stack(t_node *stack);
-void	check_args(int argc, char *argv[]);
 void	exit_error(int nb);
+
+char	***parse_arguments(int argc, char *argv[]);
+void	free_parse(char ***parsed_values);
+
+t_node	*get_stack(char ***parsed_values);
+void	*free_stack(t_node *stack);
+
+void	check_args(int argc, char *argv[]);
 int		*get_array(int argc, char *argv[]);
-t_node	*get_stack(int argc, char *argv[]);
 void	output_stack(t_node *stack);
 void	perform_radix(t_node **stack, const int counter);
 void	sort_stack(t_node **stack_a, int stack_size);
@@ -41,5 +49,8 @@ int		pusw_rrr(t_node **stack_a, t_node **stack_b);
 int		pusw_sa(t_node **stack_a, t_node **stack_b);
 int		pusw_sb(t_node **stack_a, t_node **stack_b);
 int		pusw_ss(t_node **stack_a, t_node **stack_b);
+
+t_node	*get_next_node(t_node *head);
+int		assert_stack_needs_sorting(t_node *stack);
 
 #endif
