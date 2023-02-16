@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/14 18:59:13 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/16 01:35:30 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,21 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-void	exit_error(int nb);
-
+// PARSE FUNCTOINS
 char	***parse_arguments(int argc, char *argv[]);
 void	free_parse(char ***parsed_values);
 
+// STACK FUNCTIONS
 t_node	*get_stack(char ***parsed_values);
+t_node	*get_next_node(t_node *head);
 void	*free_stack(t_node *stack);
 
-void	check_args(int argc, char *argv[]);
-int		*get_array(int argc, char *argv[]);
-void	output_stack(t_node *stack);
-void	perform_radix(t_node **stack, const int counter);
-void	sort_stack(t_node **stack_a, int stack_size);
+// SORT FUNCTIONS
+int		assert_stack_needs_sorting(t_node *stack);
+void	perform_radix(t_node **stack);
+void	sort_stack(t_node *stack_a);
+
+// PUSH SWAP COMMANDS
 int		pusw_pa(t_node **stack_a, t_node **stack_b);
 int		pusw_pb(t_node **stack_a, t_node **stack_b);
 int		pusw_ra(t_node **stack);
@@ -50,7 +52,8 @@ int		pusw_sa(t_node **stack_a, t_node **stack_b);
 int		pusw_sb(t_node **stack_a, t_node **stack_b);
 int		pusw_ss(t_node **stack_a, t_node **stack_b);
 
-t_node	*get_next_node(t_node *head);
-int		assert_stack_needs_sorting(t_node *stack);
+// OTHER
+void	output_stack(t_node *stack);
+void	exit_error(int nb);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 03:22:10 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/05 22:04:53 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/16 01:30:21 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ static void	sort_n_byte(t_node **stack_a, int byte_position)
 		pusw_pa(stack_a, &stack_b);
 }
 
-void	perform_radix(t_node **stack_a, const int counter)
+void	perform_radix(t_node **stack_a)
 {
+	static int	counter;
+
 	if (counter < 31)
 	{
-		sort_n_byte(stack_a, counter);
-		perform_radix(stack_a, counter + 1);
+		sort_n_byte(stack_a, counter++);
+		perform_radix(stack_a);
 	}
 	else
 		sort_n_byte_signed(stack_a, counter);
