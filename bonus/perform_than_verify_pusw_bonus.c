@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap_bonus.h"
+#include "push_swap_bonus.h"
 
 static void	apply_command(t_node **stack_a, t_node **stack_b, char *buffer);
 static void	verify_and_exit_if_error(t_node *stack_a, t_node *stack_b);
@@ -36,27 +36,27 @@ void	perform_than_verify_pusw(t_node **stack_a)
 static void	apply_command(t_node **stack_a, t_node **stack_b, char *buffer)
 {
 	if (!ft_strncmp(buffer, "pa", 2))
-		pusw_pa_bonus(stack_a, stack_b);
+		pusw_pa(stack_a, stack_b, 0);
 	else if (!ft_strncmp(buffer, "pb", 2))
-		pusw_pb_bonus(stack_a, stack_b);
+		pusw_pb(stack_a, stack_b, 0);
 	else if (!ft_strncmp(buffer, "ra", 2))
-		pusw_ra_bonus(stack_a);
+		pusw_ra(stack_a, 0);
 	else if (!ft_strncmp(buffer, "rb", 2))
-		pusw_rb_bonus(stack_b);
+		pusw_rb(stack_b, 0);
 	else if (!ft_strncmp(buffer, "rr", 2))
-		pusw_rr_bonus(stack_a, stack_b);
+		pusw_rr(stack_a, stack_b, 0);
 	else if (!ft_strncmp(buffer, "rra", 3))
-		pusw_rra_bonus(stack_a);
+		pusw_rra(stack_a, 0);
 	else if (!ft_strncmp(buffer, "rrb", 3))
-		pusw_rrb_bonus(stack_b);
+		pusw_rrb(stack_b, 0);
 	else if (!ft_strncmp(buffer, "rrr", 3))
-		pusw_rrr_bonus(stack_a, stack_b);
+		pusw_rrr(stack_a, stack_b, 0);
 	else if (!ft_strncmp(buffer, "sa", 2))
-		pusw_sa_bonus(stack_a, stack_b);
+		pusw_sa(stack_a, stack_b, 0);
 	else if (!ft_strncmp(buffer, "sb", 2))
-		pusw_sb_bonus(stack_a, stack_b);
+		pusw_sb(stack_a, stack_b, 0);
 	else if (!ft_strncmp(buffer, "ss", 2))
-		pusw_ss_bonus(stack_a, stack_b);
+		pusw_ss(stack_a, stack_b, 0);
 }
 
 static void	verify_and_exit_if_error(t_node *stack_a, t_node *stack_b)

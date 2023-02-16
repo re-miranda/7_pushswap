@@ -40,17 +40,17 @@ void	perform_radix(t_node **stack);
 void	sort_stack(t_node *stack_a);
 
 // PUSH SWAP COMMANDS
-int		pusw_pa(t_node **stack_a, t_node **stack_b);
-int		pusw_pb(t_node **stack_a, t_node **stack_b);
-int		pusw_ra(t_node **stack);
-int		pusw_rb(t_node **stack);
-int		pusw_rr(t_node **stack_a, t_node **stack_b);
-int		pusw_rra(t_node **stack);
-int		pusw_rrb(t_node **stack);
-int		pusw_rrr(t_node **stack_a, t_node **stack_b);
-int		pusw_sa(t_node **stack_a, t_node **stack_b);
-int		pusw_sb(t_node **stack_a, t_node **stack_b);
-int		pusw_ss(t_node **stack_a, t_node **stack_b);
+int		pusw_pa(t_node **stack_a, t_node **stack_b, int output_command);
+int		pusw_pb(t_node **stack_a, t_node **stack_b, int output_command);
+int		pusw_ra(t_node **stack, int output_command);
+int		pusw_rb(t_node **stack, int output_command);
+int		pusw_rr(t_node **stack_a, t_node **stack_b, int output_command);
+int		pusw_rra(t_node **stack, int output_command);
+int		pusw_rrb(t_node **stack, int output_command);
+int		pusw_rrr(t_node **stack_a, t_node **stack_b, int output_command);
+int		pusw_sa(t_node **stack_a, t_node **stack_b, int output_command);
+int		pusw_sb(t_node **stack_a, t_node **stack_b, int output_command);
+int		pusw_ss(t_node **stack_a, t_node **stack_b, int output_command);
 
 // OTHER
 void	output_stack(t_node *stack);

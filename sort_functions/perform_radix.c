@@ -22,16 +22,16 @@ static void	sort_n_byte_signed(t_node **stack_a, int byte_position)
 	while (reference_node != (*stack_a))
 	{
 		if (((*stack_a)->value >> byte_position) & 0b00000001)
-			pusw_pb(stack_a, &stack_b);
+			pusw_pb(stack_a, &stack_b, 1);
 		else
-			pusw_ra(stack_a);
+			pusw_ra(stack_a, 1);
 	}
 	if (((*stack_a)->value >> byte_position) & 0b00000001)
-		pusw_pb(stack_a, &stack_b);
+		pusw_pb(stack_a, &stack_b, 1);
 	else
-		pusw_ra(stack_a);
+		pusw_ra(stack_a, 1);
 	while (stack_b)
-		pusw_pa(stack_a, &stack_b);
+		pusw_pa(stack_a, &stack_b, 1);
 }
 
 static void	sort_n_byte(t_node **stack_a, int byte_position)
@@ -44,16 +44,16 @@ static void	sort_n_byte(t_node **stack_a, int byte_position)
 	while (reference_node != *stack_a)
 	{
 		if (((*stack_a)->value >> byte_position) & 0b00000001)
-			pusw_ra(stack_a);
+			pusw_ra(stack_a, 1);
 		else
-			pusw_pb(stack_a, &stack_b);
+			pusw_pb(stack_a, &stack_b, 1);
 	}
 	if (((*stack_a)->value >> byte_position) & 0b00000001)
-		pusw_ra(stack_a);
+		pusw_ra(stack_a, 1);
 	else
-		pusw_pb(stack_a, &stack_b);
+		pusw_pb(stack_a, &stack_b, 1);
 	while (stack_b)
-		pusw_pa(stack_a, &stack_b);
+		pusw_pa(stack_a, &stack_b, 1);
 }
 
 void	perform_radix(t_node **stack_a)

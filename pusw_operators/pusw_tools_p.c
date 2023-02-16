@@ -57,18 +57,20 @@ static int	pusw_px(t_node **stack_origin, t_node **stack_dest)
 	return (0);
 }
 
-int	pusw_pa(t_node **stack_a, t_node **stack_b)
+int	pusw_pa(t_node **stack_a, t_node **stack_b, int output_command)
 {
 	if (pusw_px(stack_b, stack_a))
 		return (1);
-	ft_putendl_fd("pa", 1);
+	if (output_command)
+		ft_putendl_fd("pa", 1);
 	return (0);
 }
 
-int	pusw_pb(t_node **stack_a, t_node **stack_b)
+int	pusw_pb(t_node **stack_a, t_node **stack_b, int output_command)
 {
 	if (pusw_px(stack_a, stack_b))
 		return (1);
-	ft_putendl_fd("pb", 1);
+	if (output_command)
+		ft_putendl_fd("pb", 1);
 	return (0);
 }

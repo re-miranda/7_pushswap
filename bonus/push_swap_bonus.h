@@ -16,16 +16,16 @@
 # include "../push_swap.h"
 
 void	perform_than_verify_pusw(t_node **stack_a);
-int		pusw_pa_bonus(t_node **stack_a, t_node **stack_b);
-int		pusw_pb_bonus(t_node **stack_a, t_node **stack_b);
-int		pusw_ra_bonus(t_node **stack);
-int		pusw_rb_bonus(t_node **stack);
-int		pusw_rr_bonus(t_node **stack_a, t_node **stack_b);
-int		pusw_rra_bonus(t_node **stack);
-int		pusw_rrb_bonus(t_node **stack);
-int		pusw_rrr_bonus(t_node **stack_a, t_node **stack_b);
-int		pusw_sa_bonus(t_node **stack_a, t_node **stack_b);
-int		pusw_sb_bonus(t_node **stack_a, t_node **stack_b);
-int		pusw_ss_bonus(t_node **stack_a, t_node **stack_b);
+// int		pusw_pa_bonus(t_node **stack_a, t_node **stack_b);
+// int		pusw_pb_bonus(t_node **stack_a, t_node **stack_b);
+// int		pusw_ra_bonus(t_node **stack);
+// int		pusw_rb_bonus(t_node **stack);
+// int		pusw_rr_bonus(t_node **stack_a, t_node **stack_b);
+// int		pusw_rra_bonus(t_node **stack);
+// int		pusw_rrb_bonus(t_node **stack);
+// int		pusw_rrr_bonus(t_node **stack_a, t_node **stack_b);
+// int		pusw_sa_bonus(t_node **stack_a, t_node **stack_b);
+// int		pusw_sb_bonus(t_node **stack_a, t_node **stack_b);
+// int		pusw_ss_bonus(t_node **stack_a, t_node **stack_b);
 
 #endif
