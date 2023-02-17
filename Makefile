@@ -13,7 +13,8 @@ NAME = push_swap
 INCLUDES = ./push_swap.h
 SRCS = $(SRCS_COMMON) ./push_swap.c \
 	./sort_functions/sort_stack.c \
-	./sort_functions/perform_radix.c
+	./sort_functions/radix_sort.c \
+	./sort_functions/merge_sort.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME_BONUS = push_swap_bonus
@@ -57,9 +58,12 @@ fclean: clean
 
 re: fclean all
 
-test: bonus test_simple test_intermidiate test_advanced
+test: bonus norminette test_simple test_intermidiate test_advanced
 
 retest: re test
+
+norminette:
+	@echo "\nNORMINETTE:"; norminette
 
 test_simple:
 	@echo "\nSIMPLE TEST"

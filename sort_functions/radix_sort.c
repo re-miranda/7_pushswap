@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pusw_perform_radix.c                               :+:      :+:    :+:   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 03:22:10 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/16 01:30:21 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/17 03:35:34 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+static void	sort_n_byte_signed(t_node **stack_a, int byte_position);
+static void	sort_n_byte(t_node **stack_a, int byte_position);
+
+void	radix_sort(t_node **stack_a)
+{
+	static int	counter;
+
+	if (counter < 31)
+	{
+		sort_n_byte(stack_a, counter++);
+		radix_sort(stack_a);
+	}
+	else
+		sort_n_byte_signed(stack_a, counter);
+}
 
 static void	sort_n_byte_signed(t_node **stack_a, int byte_position)
 {
@@ -54,17 +70,4 @@ static void	sort_n_byte(t_node **stack_a, int byte_position)
 		pusw_pb(stack_a, &stack_b, 1);
 	while (stack_b)
 		pusw_pa(stack_a, &stack_b, 1);
-}
-
-void	perform_radix(t_node **stack_a)
-{
-	static int	counter;
-
-	if (counter < 31)
-	{
-		sort_n_byte(stack_a, counter++);
-		perform_radix(stack_a);
-	}
-	else
-		sort_n_byte_signed(stack_a, counter);
 }
