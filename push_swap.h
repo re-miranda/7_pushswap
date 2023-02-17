@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/17 03:31:39 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/17 06:36:41 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define PARSE_EXIT_CODE 1
 # define STACK_EXIT_CODE 2
+# define OUTPUT_COMMAND 1
 
 # include "libft/libft_gnl_printf.h"
 
@@ -37,7 +38,7 @@ void	*free_stack(t_node *stack);
 // SORT FUNCTIONS
 int		assert_stack_needs_sorting(t_node *stack);
 void	radix_sort(t_node **stack);
-void	merge_sort(t_node **stack);
+void	merge_sort(t_node **stack_a, t_node **stack_b);
 void	sort_stack(t_node *stack_a);
 
 // PUSH SWAP COMMANDS

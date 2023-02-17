@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 03:23:28 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/17 03:39:31 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/17 06:26:57 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sort_stack(t_node *stack)
 
 	stack_size = count_stack_elems(stack);
 	if (stack_size < 1)
-		merge_sort(&stack);
+		merge_sort(&stack, NULL);
 	else
 		radix_sort(&stack);
 }

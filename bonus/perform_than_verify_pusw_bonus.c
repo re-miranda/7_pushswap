@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pusw_perform_than_verify_pusw_bonus.c              :+:      :+:    :+:   */
+/*   perform_than_verify_pusw_bonus.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 05:47:19 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/06 15:48:57 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/17 06:36:28 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,27 @@ void	perform_than_verify_pusw(t_node **stack_a)
 static void	apply_command(t_node **stack_a, t_node **stack_b, char *buffer)
 {
 	if (!ft_strncmp(buffer, "pa", 2))
-		pusw_pa(stack_a, stack_b, 0);
+		pusw_pa(stack_a, stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "pb", 2))
-		pusw_pb(stack_a, stack_b, 0);
+		pusw_pb(stack_a, stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "ra", 2))
-		pusw_ra(stack_a, 0);
+		pusw_ra(stack_a, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "rb", 2))
-		pusw_rb(stack_b, 0);
+		pusw_rb(stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "rr", 2))
-		pusw_rr(stack_a, stack_b, 0);
+		pusw_rr(stack_a, stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "rra", 3))
-		pusw_rra(stack_a, 0);
+		pusw_rra(stack_a, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "rrb", 3))
-		pusw_rrb(stack_b, 0);
+		pusw_rrb(stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "rrr", 3))
-		pusw_rrr(stack_a, stack_b, 0);
+		pusw_rrr(stack_a, stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "sa", 2))
-		pusw_sa(stack_a, stack_b, 0);
+		pusw_sa(stack_a, stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "sb", 2))
-		pusw_sb(stack_a, stack_b, 0);
+		pusw_sb(stack_a, stack_b, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "ss", 2))
-		pusw_ss(stack_a, stack_b, 0);
+		pusw_ss(stack_a, stack_b, OUTPUT_COMMAND);
 }
 
 static void	verify_and_exit_if_error(t_node *stack_a, t_node *stack_b)
