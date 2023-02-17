@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/17 06:36:41 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/17 06:54:17 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		assert_stack_needs_sorting(t_node *stack);
 void	radix_sort(t_node **stack);
 void	merge_sort(t_node **stack_a, t_node **stack_b);
 void	sort_stack(t_node *stack_a);
+int		count_stack_elems(t_node *stack);
 
 // PUSH SWAP COMMANDS
 int		pusw_pa(t_node **stack_a, t_node **stack_b, int output_command);

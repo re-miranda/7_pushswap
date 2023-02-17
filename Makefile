@@ -12,9 +12,9 @@ SRCS_COMMON = ./utils/exit_functions.c \
 NAME = push_swap
 INCLUDES = ./push_swap.h
 SRCS = $(SRCS_COMMON) ./push_swap.c \
+	./sort_functions/count_stack_elems.c \
 	./sort_functions/sort_stack.c \
-	./sort_functions/radix_sort.c \
-	./sort_functions/merge_sort.c
+	./sort_functions/radix_sort.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME_BONUS = push_swap_bonus
