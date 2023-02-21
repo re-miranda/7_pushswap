@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/17 06:54:17 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/19 03:44:50 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define PARSE_EXIT_CODE 1
 # define STACK_EXIT_CODE 2
 # define OUTPUT_COMMAND 1
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 
 # include "libft/libft_gnl_printf.h"
 

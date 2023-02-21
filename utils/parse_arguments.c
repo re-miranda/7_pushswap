@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 04:38:07 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/16 00:38:58 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:56:18 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,10 @@ static int	detect_illigal_values(char ***parsed_values)
 	{
 		counter = 0;
 		while (parsed_values[split_i][counter])
-		{
-			if (contains_illigal_characters(parsed_values[split_i][counter]))
+			if (contains_illigal_characters(parsed_values[split_i][counter++]))
 				break ;
-			if (ft_atoi_safe(parsed_values[split_i][counter], NULL))
-				break ;
-			counter++;
-		}
-		if (parsed_values[split_i][counter])
+		if (parsed_values[split_i++][counter] != NULL)
 			return (1);
-		split_i++;
 	}
 	return (0);
 }
@@ -74,6 +68,8 @@ static int	contains_illigal_characters(char *value)
 	int	counter;
 
 	counter = 0;
+	if (ft_atoi_safe(value, NULL))
+		return (1);
 	while (value[counter])
 	{
 		if (ft_isdigit(value[counter]))

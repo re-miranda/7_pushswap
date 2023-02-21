@@ -2,7 +2,7 @@
 By: rmiranda | Renato Miranda Goncalves
 
 ## `ft_atoi`
-_`int	ft_atoi(const char *str)`_
+_`int	ft_atoi(char *str)`_
 ### DESCRIPTION
 The ft_atoi() function converts the initial portion of the string pointed to by str to int.  
 The call ft_atoi(str) shall be equivalent to:  
@@ -16,16 +16,28 @@ The ft_atoi() function returns the result of the conversion, unless the value wo
 No errors are defined.
 
 ## `ft_atoi_safe (NEW)`
-_`int	ft_atoi_safe(const char *str, int	*ptr)`_
+_`int	ft_atoi_safe(char *str, int *result_ptr)`_
 ### DESCRIPTION
 The ft_atoi_safe() function converts the initial portion of the string pointed to by str to int.  
-The call ft_atoi_safe(str, ptr) shall be equivalent to ft_atoi(str) except that ft_atoi_safe() handles errors. This behavior is defined in ERRORS.  
+The call ft_atoi_safe(str, result_ptr) shall be equivalent to ft_atoi(str) except that ft_atoi_safe() handles errors. This behavior is defined in ERRORS.  
 The string may begin with an arbitrary amount of white space (as determined by iswhitespace(3)) followed by a single optional '+' or '-' sign.
 The remainder of the string is converted to an int value in the obvious manner, stopping at the first character which is not a valid digit in the given base.  
 ### RETURN VALUE
-The ft_atoi_safe() function returns 0, on success, or 1, in failure (see ERRORS); The result of the conversion is stored inside ptr.
+The ft_atoi_safe() function returns 0, on success, or 1, in failure (see ERRORS); The result of the conversion is stored inside result_ptr.
 ### ERRORS
-If the the value would underflow or overflow, the function shall return 1, and no value is stored in ptr.
+If the the value would underflow or overflow, the function shall return 1, and no value is stored in result_ptr.
+
+## `ft_atol_safe (NEW)`
+_`long long int	ft_atoi_safe(char *str, int *result_ptr)`_
+### DESCRIPTION
+The ft_atol_safe() function converts the initial portion of the string pointed to by str to long long int.  
+The call ft_atol_safe(str, result_ptr) shall be equivalent to ft_atoi_safe(str, result_ptr) except that ft_atol_safe() handles long long intergers.
+The string may begin with an arbitrary amount of white space (as determined by iswhitespace(3)) followed by a single optional '+' or '-' sign.
+The remainder of the string is converted to an long int value in the obvious manner, stopping at the first character which is not a valid digit in the given base.  
+### RETURN VALUE
+The ft_atol_safe() function returns 0, on success, or 1, in failure (see ERRORS); The result of the conversion is stored inside result_ptr.
+### ERRORS
+If the the value would underflow or overflow, the function shall return 1, and no value is stored in result_ptr.
 
 ## `ft_bzero`
 _`void	ft_bzero(void *s, size_t n)`_
