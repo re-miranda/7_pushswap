@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:28:54 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/19 03:32:04 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:22:04 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ t_stkp	*stkp(t_node *list)
 	if (!list)
 		return (NULL);
 	return ((t_stkp *)list->content);
+}
+
+int	ft_lstsize(t_node *lst)
+{
+	int		i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

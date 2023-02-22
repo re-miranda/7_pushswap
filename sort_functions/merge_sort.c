@@ -6,77 +6,157 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 03:29:15 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/17 13:17:56 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:54:10 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	get_middle_value(t_node *stack);
-static int	*get_array_from_stack(t_node *stack, int stack_size);
-static void	sort_array(int *values_array, int stack_size);
+static void	merge_sort_reversed(t_sort_info sort_info);
+static int	push_and_count(t_sort_info sort_info);
+static int	find_middle_value(t_sort_info sort_info, int *error);
+static void	sort_int_array(int *values_array, int lenght);
 
-void	merge_sort(t_node **stack_a, t_node **stack_b)
+void	merge_sort(t_sort_info sort_info)
 {
-	int		middle_value;
-	t_node	**stack_b;
-	int		pushed_amount;
+	int	movement_count;
 
-	middle_value = get_middle_value(*stack_a);
-	pushed_amount = push_upper_half_to_b(stack_a, stack_b, middle_value);
-	if (*stack_a->next->next != *stack_a)
-		merge_sort(stack_a, stack_b);
-	else if (*stack_a->value > *stack_a->next->value)
-		pusw_sa(stack_a, stack_b, OUTPUT_COMMAND);
-	if (pushed_amount > 2)
-		merge_sort(stack_b, stack_a);
-	else if (pushed_amount == 2 && *stack_b->value < *stack_b->next->value)
-		pusw_sb(stack_a, stack_b, OUTPUT_COMMAND);
-	while (pushed_amount--)
-		pusw_pa(stack_a, stack_b, OUTPUT_COMMAND);
+	movement_count = push_and_count(sort_info);
+	if (movement_count == -1)
+		exit_sort(sort_info);
+	sort_info.lenght -= movement_count;
+	if (sort_info.lenght > 2)
+		merge_sort(sort_info);
+	else
+	{
+		if (sort_info.lenght == 2)
+			sort_a_size_2(sort_info);
+		if (movement_count == 2)
+			sort_b_size_2(sort_info);
+		while (movement_count--)
+			pusw_pa(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+		return ;
+	}
+	sort_info.main_stack = 'b';
+	sort_info.lenght = movement_count;
+	merge_sort_reversed(sort_info);
+	while (movement_count--)
+		pusw_pa(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
 }
 
-static int	get_middle_value(t_node *stack, int stack_size)
+static void	merge_sort_reversed(t_sort_info sort_info)
+{
+	int	movement_count;
+
+	movement_count = push_and_count(sort_info);
+	if (movement_count == -1)
+		exit_sort(sort_info);
+	sort_info.lenght -= movement_count;
+	if (sort_info.lenght > 2)
+		merge_sort_reversed(sort_info);
+	else
+	{
+		if (sort_info.lenght == 2)
+			sort_b_size_2(sort_info);
+		if (movement_count == 2)
+			sort_a_size_2(sort_info);
+		while (movement_count--)
+			pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+		return ;
+	}
+	sort_info.main_stack = 'a';
+	sort_info.lenght = movement_count;
+	merge_sort(sort_info);
+	while (movement_count--)
+		pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+}
+
+static int	push_and_count(t_sort_info sort_info)
+{
+	int	push_counter;
+	int	undo_rotate_counter;
+	int	middle_value;
+	int	error_signal;
+
+	push_counter = 0;
+	undo_rotate_counter = 0;
+	if (sort_info.lenght <= 2)
+		return (0);
+	middle_value = find_middle_value(sort_info, &error_signal);
+	if (error_signal)
+		return (-1);
+	if (sort_info.main_stack == 'a')
+	{
+		while (sort_info.lenght--)
+		{
+			if (sort_info.stack_a[0]->value <= middle_value && ++push_counter)
+				pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+			else if (++undo_rotate_counter)
+				pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
+		}
+		while (undo_rotate_counter--)
+			pusw_rra(sort_info.stack_a, OUTPUT_COMMAND);
+	}
+	else
+	{
+		while (sort_info.lenght--)
+		{
+			if (sort_info.stack_b[0]->value > middle_value && ++push_counter)
+				pusw_pa(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+			else if (++undo_rotate_counter)
+				pusw_rb(sort_info.stack_b, OUTPUT_COMMAND);
+		}
+		while (undo_rotate_counter--)
+			pusw_rrb(sort_info.stack_b, OUTPUT_COMMAND);
+	}
+	return (push_counter);
+}
+
+static int	find_middle_value(t_sort_info sort_info, int *error)
 {
 	int	*values_array;
-	int	middle_value;
-
-	values_array = get_array_from_stack(stack, stack_size);
-	sort_array(values_array, stack_size);
-	middle_value = values_array[(int)(stack_size / 2)];
-	free(values_array);
-	return (middle_value);
-}
-
-static int	*get_array_from_stack(t_node *stack, int stack_size)
-{
-	int	*array;
-
-	array = malloc(sizeof(int), stack_size);
-	while (stack_size--)
-	{
-		stack = stack->previus;
-		array[stack_size] = stack->value;
-	}
-	return (array);
-}
-
-static void	sort_array(int *values_array, int stack_size)
-{
 	int	counter;
-	int	swap;
+	int	output;
+	t_node	*stack;
 
 	counter = 0;
-	while (counter < stack_size)
+	*error = -1;
+	stack = sort_info.stack_a[0];
+	values_array = malloc(sort_info.lenght * sizeof(int));
+	if (!values_array)
+		return (-1);
+	*error = 0;
+	if (sort_info.main_stack == 'b')
+		stack = sort_info.stack_b[0];
+	while (counter < sort_info.lenght)
 	{
-		if (values_array[counter] > values_array[counter + 1])
-		{
-			swap = values_array[counter + 1];
-			values_array[counter + 1] = values_array[counter];
-			values_array[counter] = swap;
-			counter = 0;
-			break ;
-		}
+		values_array[counter] = stack->value;
+		stack = stack->next;
 		counter++;
+	}
+	sort_int_array(values_array, sort_info.lenght);
+	counter = (int)(sort_info.lenght / 2) - 1;
+	output = values_array[counter];
+	free(values_array);
+	return (output);
+}
+
+static void	sort_int_array(int *values_array, int lenght)
+{
+	int	swap;
+	int	counter;
+
+	counter = 0;
+	while (counter < lenght - 1)
+	{
+		if (values_array[counter] < values_array[counter + 1])
+			counter++;
+		else
+		{
+			swap = values_array[counter];
+			values_array[counter] = values_array[counter + 1];
+			values_array[counter + 1] = swap;
+			counter = 0;
+		}
 	}
 }

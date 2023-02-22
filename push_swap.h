@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/19 03:44:50 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:53:32 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
+typedef struct s_sort_info
+{
+	t_node	**stack_a;
+	t_node	**stack_b;
+	int		lenght;
+	char	main_stack;
+}	t_sort_info;
+
 // PARSE FUNCTOINS
 char	***parse_arguments(int argc, char *argv[]);
 void	free_parse(char ***parsed_values);
@@ -39,10 +47,14 @@ void	*free_stack(t_node *stack);
 
 // SORT FUNCTIONS
 int		assert_stack_needs_sorting(t_node *stack);
-void	radix_sort(t_node **stack);
-void	merge_sort(t_node **stack_a, t_node **stack_b);
+// void	radix_sort(t_node **stack);
 void	sort_stack(t_node *stack_a);
 int		count_stack_elems(t_node *stack);
+void	merge_sort(t_sort_info sort_info);
+void	sort_a_size_2(t_sort_info sort_info);
+void	sort_b_size_2(t_sort_info sort_info);
+void	sort_a_size_3(t_sort_info sort_info);
+void	sort_b_size_3(t_sort_info sort_info);
 
 // PUSH SWAP COMMANDS
 int		pusw_pa(t_node **stack_a, t_node **stack_b, int output_command);
@@ -60,5 +72,6 @@ int		pusw_ss(t_node **stack_a, t_node **stack_b, int output_command);
 // OTHER
 void	output_stack(t_node *stack);
 void	exit_error(int nb);
+void	exit_sort(t_sort_info sort_info);
 
 #endif

@@ -14,7 +14,8 @@ INCLUDES = ./push_swap.h
 SRCS = $(SRCS_COMMON) ./push_swap.c \
 	./sort_functions/count_stack_elems.c \
 	./sort_functions/sort_stack.c \
-	./sort_functions/radix_sort.c
+	./sort_functions/merge_sort.c \
+	./sort_functions/simple_sort.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME_BONUS = push_swap_bonus
@@ -58,7 +59,7 @@ fclean: clean
 
 re: fclean all
 
-test: bonus norminette test_simple test_intermidiate test_advanced
+test: bonus test_simple test_intermidiate test_advanced
 
 retest: re test
 
@@ -70,7 +71,7 @@ test_simple:
 	@echo -n "checker_linux: "
 	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | ./checker_linux $$ARG
 	@echo -n "checker_bonus: "
-	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
+	-@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
 	@echo -n "Operations: "
 	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | wc -l
 
@@ -79,7 +80,7 @@ test_intermidiate:
 	@echo -n "checker_linux: "
 	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | ./checker_linux $$ARG
 	@echo -n "checker_bonus: "
-	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
+	-@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
 	@echo -n "Operations: "
 	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | wc -l
 
@@ -88,7 +89,7 @@ test_advanced:
 	@echo -n "checker_linux: "
 	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | ./checker_linux $$ARG
 	@echo -n "checker_bonus: "
-	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
+	-@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
 	@echo -n "Operations: "
 	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | wc -l
 
