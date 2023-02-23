@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 03:29:15 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/23 03:43:09 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:19:45 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	merge_sort_reversed(t_sort_info sort_info)
 		return ;
 	}
 	merge_sort_reversed(sort_info);
-	sort_info.main_stack = 'c';
+	sort_info.main_stack = 'a';
 	sort_info.lenght = movement_count;
 	merge_sort(sort_info);
 	while (movement_count--)
@@ -83,31 +83,17 @@ static int	push_and_count(t_sort_info sort_info)
 		return (-1);
 	if (sort_info.main_stack == 'a')
 	{
-		while (sort_info.stack_a[0]->value <= middle_value && sort_info.lenght--)
-		{
-			pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
-			push_counter++;
-		}
 		while (sort_info.lenght--)
 		{
-			pusw_rra(sort_info.stack_a, OUTPUT_COMMAND);
 			if (sort_info.stack_a[0]->value <= middle_value && ++push_counter)
 				pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
-			else
-				break ;
+			else if (++undo_rotate_counter)
+				pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
 		}
-		pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
-		while (sort_info.lenght--)
-		{
-			pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
-			while (sort_info.stack_a[0]->value <= middle_value && sort_info.lenght--)
-			{
-				push_counter++;
-				pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
-			}
-		}
+		while (undo_rotate_counter--)
+			pusw_rra(sort_info.stack_a, OUTPUT_COMMAND);
 	}
-	else if (sort_info.main_stack == 'b')
+	else
 	{
 		while (sort_info.lenght--)
 		{
@@ -118,18 +104,6 @@ static int	push_and_count(t_sort_info sort_info)
 		}
 		while (undo_rotate_counter--)
 			pusw_rrb(sort_info.stack_b, OUTPUT_COMMAND);
-	}
-	else if (sort_info.main_stack == 'c')
-	{
-		while (sort_info.lenght--)
-		{
-			if (sort_info.stack_a[0]->value <= middle_value && ++push_counter)
-				pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
-			else if (++undo_rotate_counter)
-				pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
-		}
-		while (undo_rotate_counter--)
-			pusw_rra(sort_info.stack_a, OUTPUT_COMMAND);
 	}
 	return (push_counter);
 }

@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 04:38:07 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/21 19:56:18 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:53:59 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ static int	detect_illigal_values(char ***parsed_values)
 	{
 		counter = 0;
 		while (parsed_values[split_i][counter])
-			if (contains_illigal_characters(parsed_values[split_i][counter++]))
+			if (contains_illigal_characters(parsed_values[split_i][counter++])
+				&& counter--)
 				break ;
-		if (parsed_values[split_i++][counter] != NULL)
+		if (parsed_values[split_i++][counter] != 0)
 			return (1);
 	}
 	return (0);
