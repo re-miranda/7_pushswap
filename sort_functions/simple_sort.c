@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 21:51:34 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/22 21:55:32 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 05:11:12 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	sort_a_size_3(t_sort_info sort_info)
 	t_node	**stack_a;
 
 	stack_a = sort_info.stack_a;
-	sort_a_size_2(sort_info);
-	if (stack_a[0]->next->next->value < stack_a[0]->next->value)
+	if (stack_a[0]->value > stack_a[0]->next->value
+		&& stack_a[0]->value > stack_a[0]->next->next->value)
+			pusw_ra(stack_a, OUTPUT_COMMAND);
+	else if (stack_a[0]->next->value > stack_a[0]->next->next->value)
 	{
 		pusw_ra(stack_a, OUTPUT_COMMAND);
 		sort_a_size_2(sort_info);
@@ -55,12 +57,29 @@ void	sort_b_size_3(t_sort_info sort_info)
 	t_node	**stack_b;
 
 	stack_b = sort_info.stack_b;
-	sort_b_size_2(sort_info);
-	if (stack_b[0]->next->next->value > stack_b[0]->next->value)
+	if (stack_b[0]->value < stack_b[0]->next->value
+		&& stack_b[0]->value < stack_b[0]->next->next->value)
+			pusw_rb(stack_b, OUTPUT_COMMAND);
+	else if (stack_b[0]->next->value < stack_b[0]->next->next->value)
 	{
 		pusw_rb(stack_b, OUTPUT_COMMAND);
-		pusw_sb(NULL, stack_b, OUTPUT_COMMAND);
+		sort_b_size_2(sort_info);
 		pusw_rrb(stack_b, OUTPUT_COMMAND);
 	}
 	sort_b_size_2(sort_info);
+}
+
+void	sort_size_5(t_sort_info sort_info)
+{
+	int	movement_count;
+
+	movement_count = push_and_count(sort_info);
+	sort_info.lenght -= movement_count;
+	if (sort_info.lenght == 3)
+		sort_a_size_3(sort_info);
+	else
+		sort_a_size_2(sort_info);
+	sort_b_size_2(sort_info);
+	while (movement_count--)
+		pusw_pa(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
 }
