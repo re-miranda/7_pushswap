@@ -66,7 +66,7 @@ test: bonus norminette test_simple test_intermidiate test_advanced
 retest: re test
 
 norminette:
-	-@echo "\nNORMINETTE:"; norminette
+	@echo "\nNORMINETTE:"; norminette
 
 test_simple:
 	@echo "\nSIMPLE TEST"

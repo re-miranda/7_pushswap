@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 05:12:20 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/23 06:16:10 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:28:47 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	func_a(t_sort_info sort_info, int middle_value, int *push_counter);
 static void	func_b(t_sort_info sort_info, int middle_value, int *push_counter);
 static void	func_c(t_sort_info sort_info, int middle_value, int *push_counter);
+static int	assert_matches(t_sort_info sort_info, int middle_value);
 
 int	push_and_count(t_sort_info sort_info)
 {
@@ -39,28 +40,27 @@ int	push_and_count(t_sort_info sort_info)
 
 static void	func_a(t_sort_info sort_info, int middle_value, int *push_counter)
 {
-	while (sort_info.stack_a[0]->value <= middle_value && sort_info.lenght--)
+	int	matches;
+
+	matches = assert_matches(sort_info, middle_value);
+	push_counter[0] = matches;
+	while (matches)
 	{
-		pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
-		push_counter[0]++;
-	}
-	while (sort_info.lenght--)
-	{
-		pusw_rra(sort_info.stack_a, OUTPUT_COMMAND);
-		if (sort_info.stack_a[0]->value <= middle_value && ++push_counter[0])
+		while (sort_info.stack_a[0]->value <= middle_value && matches--)
 			pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
-		else
-			break ;
-	}
-	pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
-	while (sort_info.lenght--)
-	{
-		pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
-		while (sort_info.stack_a[0]->value <= middle_value)
+		while (matches)
 		{
-			sort_info.lenght--;
-			push_counter[0]++;
-			pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+			pusw_rra(sort_info.stack_a, OUTPUT_COMMAND);
+			if (sort_info.stack_a[0]->value <= middle_value && matches--)
+				pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+			else
+				break ;
+		}
+		while (matches)
+		{
+			while (sort_info.stack_a[0]->value <= middle_value && matches--)
+				pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
+			pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
 		}
 	}
 }
@@ -68,11 +68,14 @@ static void	func_a(t_sort_info sort_info, int middle_value, int *push_counter)
 static void	func_b(t_sort_info sort_info, int middle_value, int *push_counter)
 {
 	int	undo_rotate_counter;
+	int	matches;
 
 	undo_rotate_counter = 0;
-	while (sort_info.lenght--)
+	matches = assert_matches(sort_info, middle_value);
+	push_counter[0] = matches;
+	while (matches)
 	{
-		if (sort_info.stack_b[0]->value > middle_value && ++push_counter[0])
+		if (sort_info.stack_b[0]->value > middle_value && matches--)
 			pusw_pa(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
 		else if (++undo_rotate_counter)
 			pusw_rb(sort_info.stack_b, OUTPUT_COMMAND);
@@ -84,15 +87,39 @@ static void	func_b(t_sort_info sort_info, int middle_value, int *push_counter)
 static void	func_c(t_sort_info sort_info, int middle_value, int *push_counter)
 {
 	int	undo_rotate_counter;
+	int	matches;
 
 	undo_rotate_counter = 0;
-	while (sort_info.lenght--)
+	matches = assert_matches(sort_info, middle_value);
+	push_counter[0] = matches;
+	while (matches)
 	{
-		if (sort_info.stack_a[0]->value <= middle_value && ++push_counter[0])
+		if (sort_info.stack_a[0]->value <= middle_value && matches--)
 			pusw_pb(sort_info.stack_a, sort_info.stack_b, OUTPUT_COMMAND);
 		else if (++undo_rotate_counter)
 			pusw_ra(sort_info.stack_a, OUTPUT_COMMAND);
 	}
 	while (undo_rotate_counter--)
 		pusw_rra(sort_info.stack_a, OUTPUT_COMMAND);
+}
+
+static int	assert_matches(t_sort_info sort_info, int middle_value)
+{
+	int		matches;
+	t_node	*stack;
+
+	matches = 0;
+	if (sort_info.main_stack == 'b')
+		stack = sort_info.stack_b[0];
+	else
+		stack = sort_info.stack_a[0];
+	while (sort_info.lenght--)
+	{
+		if (stack->value > middle_value && sort_info.main_stack == 'b')
+			matches++;
+		else if (stack->value <= middle_value && sort_info.main_stack != 'b')
+			matches++;
+		stack = stack->next;
+	}
+	return (matches);
 }
