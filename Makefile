@@ -14,6 +14,7 @@ INCLUDES = ./push_swap.h
 SRCS = $(SRCS_COMMON) ./push_swap.c \
 	./sort_functions/count_stack_elems.c \
 	./sort_functions/push_and_count.c \
+	./sort_functions/find_middle_value.c \
 	./sort_functions/sort_stack.c \
 	./sort_functions/merge_sort.c \
 	./sort_functions/simple_sort.c

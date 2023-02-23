@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 03:23:28 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/23 05:16:00 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 05:38:27 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sort_stack(t_node *stack)
 {
 	t_sort_info	sort_info;
-	t_node	*stack_b;
+	t_node		*stack_b;
 
 	sort_info.stack_a = &stack;
 	stack_b = NULL;
@@ -28,6 +28,6 @@ void	sort_stack(t_node *stack)
 		sort_a_size_3(sort_info);
 	else if (sort_info.lenght <= 5)
 		sort_size_5(sort_info);
-	else 
+	else
 		merge_sort(sort_info);
 }
