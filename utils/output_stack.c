@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   pusw_output_stack.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:35:14 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/22 02:00:55 by rmiranda         ###   ########.fr       */
+/*   Created: 2022/12/03 03:21:37 by rmiranda          #+#    #+#             */
+/*   Updated: 2023/02/12 23:35:02 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-int	ft_isprint(int character)
+void	output_stack(t_node *stack)
 {
-	if (character >= 32 && character < 127)
-		return (1);
-	return (0);
+	t_node	*last_stack_node;
+
+	last_stack_node = stack->previus;
+	while (stack != last_stack_node)
+	{
+		ft_printf("%i ", stack->value);
+		stack = stack->next;
+	}
+	ft_printf("%i\n", stack->value);
 }

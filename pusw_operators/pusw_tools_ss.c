@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 03:25:13 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/05 22:24:08 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/17 06:36:14 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	pusw_sx(t_node **stack[2], int i)
 	return (0);
 }
 
-int	pusw_sa(t_node **stack_a, t_node **stack_b)
+int	pusw_sa(t_node **stack_a, t_node **stack_b, int output_command)
 {
 	t_node	**stacks_in_array[2];
 
@@ -34,11 +34,12 @@ int	pusw_sa(t_node **stack_a, t_node **stack_b)
 	stacks_in_array[1] = stack_b;
 	if (pusw_sx(stacks_in_array, 0))
 		return (1);
-	ft_putendl_fd("sa", 1);
+	if (output_command)
+		ft_putendl_fd("sa", 1);
 	return (0);
 }
 
-int	pusw_sb(t_node **stack_a, t_node **stack_b)
+int	pusw_sb(t_node **stack_a, t_node **stack_b, int output_command)
 {
 	t_node	**stacks_in_array[2];
 
@@ -46,11 +47,12 @@ int	pusw_sb(t_node **stack_a, t_node **stack_b)
 	stacks_in_array[1] = stack_b;
 	if (pusw_sx(stacks_in_array, 1))
 		return (1);
-	ft_putendl_fd("sb", 1);
+	if (output_command)
+		ft_putendl_fd("sb", 1);
 	return (0);
 }
 
-int	pusw_ss(t_node **stack_a, t_node **stack_b)
+int	pusw_ss(t_node **stack_a, t_node **stack_b, int output_command)
 {
 	t_node	**stacks_in_array[2];
 
@@ -60,6 +62,7 @@ int	pusw_ss(t_node **stack_a, t_node **stack_b)
 		return (1);
 	if (pusw_sx(stacks_in_array, 1))
 		return (1);
-	ft_putendl_fd("ss", 1);
+	if (output_command)
+		ft_putendl_fd("ss", 1);
 	return (0);
 }

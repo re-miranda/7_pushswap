@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:38 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/01/05 22:07:50 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 05:07:40 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 int	main(int argc, char *argv[])
 {
-	int		*int_array;
+	char	***parsed_values;
 	t_node	*stack;
 
-	int_array = get_array(argc, argv);
-	stack = get_stack(int_array, argc - 1);
-	perform_radix(&stack, 0);
-	free(int_array);
+	parsed_values = parse_arguments(argc, argv);
+	stack = get_stack(parsed_values);
+	free_parse(parsed_values);
+	if (assert_stack_needs_sorting(stack))
+		sort_stack(stack);
 	free_stack(stack);
 	return (0);
 }

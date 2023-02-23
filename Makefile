@@ -1,25 +1,32 @@
-SRCS_COMMON = ./pusw_utils/pusw_exit_functions.c \
-	./pusw_utils/pusw_get_array.c \
-	./pusw_utils/pusw_get_stack.c \
-	./pusw_utils/pusw_output_stack.c \
-	./pusw_sort_functions/pusw_tools_p.c \
-	./pusw_sort_functions/pusw_tools_rr.c \
-	./pusw_sort_functions/pusw_tools_rrr.c \
-	./pusw_sort_functions/pusw_tools_ss.c
+SRCS_COMMON = ./utils/exit_functions.c \
+	./utils/parse_arguments.c \
+	./utils/get_stack.c \
+	./utils/get_next_node.c \
+	./utils/assert_stack_needs_sorting.c \
+	./utils/output_stack.c \
+	./pusw_operators/pusw_tools_p.c \
+	./pusw_operators/pusw_tools_rr.c \
+	./pusw_operators/pusw_tools_rrr.c \
+	./pusw_operators/pusw_tools_ss.c
 
 NAME = push_swap
 INCLUDES = ./push_swap.h
 SRCS = $(SRCS_COMMON) ./push_swap.c \
-	./pusw_sort_functions/pusw_perform_radix.c
+	./sort_functions/count_stack_elems.c \
+	./sort_functions/push_and_count.c \
+	./sort_functions/find_middle_value.c \
+	./sort_functions/sort_stack.c \
+	./sort_functions/merge_sort.c \
+	./sort_functions/simple_sort.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME_BONUS = push_swap_bonus
-INCLUDES_BONUS = ./pusw_bonus/push_swap_bonus.h
-SRCS_BONUS = $(SRCS_COMMON) ./pusw_bonus/push_swap_bonus.c \
-	./pusw_bonus/pusw_perform_than_verify_pusw_bonus.c
+INCLUDES_BONUS = ./bonus/push_swap_bonus.h
+SRCS_BONUS = $(SRCS_COMMON) ./bonus/push_swap_bonus.c \
+	./bonus/perform_than_verify_pusw_bonus.c
 OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 CC = cc $(CFLAGS)
 RM = rm -rf
 
@@ -54,33 +61,38 @@ fclean: clean
 
 re: fclean all
 
-test: all test1 test2 test3 test4 test5 test6 test7
-	$(RM) tests/output*
-	echo "\nALL TESTS PASSED"
+test: bonus norminette test_simple test_intermidiate test_advanced
 
 retest: re test
 
-test1:
-	-./push_swap -01 442 2147483647 > tests/output1.txt
-	diff tests/correct1.txt tests/output1.txt
-test2:
-	-./push_swap -01 442 2147483648 > tests/output2.txt
-	diff tests/correct2.txt tests/output2.txt
-test3:
-	-./push_swap -01 442 -2147483648 > tests/output3.txt
-	diff tests/correct3.txt tests/output3.txt
-test4:
-	-./push_swap -01 442 -2147483649 > tests/output4.txt
-	diff tests/correct4.txt tests/output4.txt
-test5:
-	-./push_swap -01 442 2147483647 442 > tests/output5.txt
-	diff tests/correct5.txt tests/output5.txt
-test6:
-	-./push_swap -01 442 2147483647 -1 > tests/output6.txt
-	diff tests/correct6.txt tests/output6.txt
-test7:
-	-./push_swap -01 442 2147483647 -0001 > tests/output7.txt
-	diff tests/correct7.txt tests/output7.txt
+norminette:
+	@echo "\nNORMINETTE:"; norminette
 
+test_simple:
+	@echo "\nSIMPLE TEST"
+	@echo -n "checker_linux: "
+	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo -n "checker_bonus: "
+	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
+	@echo -n "Operations: "
+	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | wc -l
 
-.PHONY: all bonus clean fclean re teste retest
+test_intermidiate:
+	@echo "\nSIMPLE TEST"
+	@echo -n "checker_linux: "
+	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo -n "checker_bonus: "
+	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
+	@echo -n "Operations: "
+	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | wc -l
+
+test_advanced:
+	@echo "\nSIMPLE TEST"
+	@echo -n "checker_linux: "
+	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo -n "checker_bonus: "
+	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
+	@echo -n "Operations: "
+	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | wc -l
+
+.PHONY: all bonus clean fclean re test retest
