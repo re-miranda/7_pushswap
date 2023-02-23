@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 03:50:06 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/15 14:20:44 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/23 21:53:20 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ t_node	*get_stack(char ***parsed_values)
 
 	stack = create_stack(parsed_values);
 	if (detect_duplicates(stack))
+	{
+		free_parse(parsed_values);
 		abort_stack(stack);
+	}
 	return (stack);
 }
 
