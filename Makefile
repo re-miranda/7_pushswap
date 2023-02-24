@@ -23,10 +23,13 @@ OBJS = $(SRCS:%.c=%.o)
 NAME_BONUS = push_swap_bonus
 INCLUDES_BONUS = ./bonus/push_swap_bonus.h
 SRCS_BONUS = $(SRCS_COMMON) ./bonus/push_swap_bonus.c \
-	./bonus/perform_than_verify_pusw_bonus.c
+	./bonus/perform_than_verify_pusw_bonus.c \
+	./bonus/exit_functions_bonus.c
 OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 
-CFLAGS = -Wall -Wextra -Werror
+VAL_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes -s -q
+VAL = valgrind $(VAL_FLAGS)
+CFLAGS = -Wall -Wextra -Werror -g3
 CC = cc $(CFLAGS)
 RM = rm -rf
 
@@ -61,14 +64,14 @@ fclean: clean
 
 re: fclean all
 
-test: bonus norminette test_simple test_intermidiate test_advanced
+test: norminette test_simple test_intermidiate test_advanced test_error
 
 retest: re test
 
 norminette:
 	@echo "\nNORMINETTE:"; norminette
 
-test_simple:
+test_simple: bonus
 	@echo "\nSIMPLE TEST"
 	@echo -n "checker_linux: "
 	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | ./checker_linux $$ARG
@@ -77,8 +80,8 @@ test_simple:
 	@echo -n "Operations: "
 	@ARG=$$(cat ./test_simple.txt); ./push_swap $$ARG | wc -l
 
-test_intermidiate:
-	@echo "\nSIMPLE TEST"
+test_intermidiate: bonus
+	@echo "\nINTERMIDIATE TEST"
 	@echo -n "checker_linux: "
 	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | ./checker_linux $$ARG
 	@echo -n "checker_bonus: "
@@ -86,13 +89,36 @@ test_intermidiate:
 	@echo -n "Operations: "
 	@ARG=$$(cat ./test_intermidiate.txt); ./push_swap $$ARG | wc -l
 
-test_advanced:
-	@echo "\nSIMPLE TEST"
+test_advanced: bonus
+	@echo "\nADVANCED TEST"
 	@echo -n "checker_linux: "
 	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | ./checker_linux $$ARG
 	@echo -n "checker_bonus: "
 	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | ./push_swap_bonus $$ARG
 	@echo -n "Operations: "
 	@ARG=$$(cat ./test_advanced.txt); ./push_swap $$ARG | wc -l
+
+test_error: bonus
+	@echo "\nERROR TEST"
+	-@echo "\nnon_numeric_0"; ARG=$$(cat ./non_numeric_0.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nnon_numeric_1"; ARG=$$(cat ./non_numeric_1.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nnon_numeric_2"; ARG=$$(cat ./non_numeric_2.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nnon_numeric_3"; ARG=$$(cat ./non_numeric_3.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nnon_numeric_4"; ARG=$$(cat ./non_numeric_4.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nnon_numeric_5"; ARG=$$(cat ./non_numeric_5.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nduplicate_number_0"; ARG=$$(cat ./duplicate_number_0.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nduplicate_number_1"; ARG=$$(cat ./duplicate_number_1.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nduplicate_number_2"; ARG=$$(cat ./duplicate_number_2.txt); $(VAL) ./push_swap $$ARG
+	@echo -n "\nchecker_linux: "
+	@echo "max_int"; ARG=$$(cat ./max_int.txt); $(VAL) ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo -n "checker_bonus: "
+	@echo "max_int"; ARG=$$(cat ./max_int.txt); ./push_swap $$ARG | $(VAL) ./push_swap_bonus $$ARG
+	@echo -n "\nchecker_linux: "
+	@echo "min_int"; ARG=$$(cat ./min_int.txt); $(VAL) ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo -n "checker_bonus: "
+	@echo "min_int"; ARG=$$(cat ./min_int.txt); ./push_swap $$ARG |  $(VAL) ./push_swap_bonus $$ARG
+	-@echo "\nmax_int_overflow"; ARG=$$(cat ./max_int_overflow.txt); $(VAL) ./push_swap $$ARG
+	-@echo "\nmin_int_overflow"; ARG=$$(cat ./min_int_overflow.txt); $(VAL) ./push_swap $$ARG
+	@echo "\n2 1 0"; ARG="2 1 0"; $(VAL) ./push_swap $$ARG | ./checker_linux $$ARG
 
 .PHONY: all bonus clean fclean re test retest
