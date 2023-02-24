@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/23 05:57:25 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 03:50:27 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int		pusw_sb(t_node **stack_a, t_node **stack_b, int output_command);
 int		pusw_ss(t_node **stack_a, t_node **stack_b, int output_command);
 
 // OTHER
-void	output_stack(t_node *stack);
 void	exit_error(int nb);
 void	exit_sort(t_sort_info sort_info);
 

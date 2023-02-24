@@ -3,7 +3,6 @@ SRCS_COMMON = ./utils/exit_functions.c \
 	./utils/get_stack.c \
 	./utils/get_next_node.c \
 	./utils/assert_stack_needs_sorting.c \
-	./utils/output_stack.c \
 	./pusw_operators/pusw_tools_p.c \
 	./pusw_operators/pusw_tools_rr.c \
 	./pusw_operators/pusw_tools_rrr.c \
