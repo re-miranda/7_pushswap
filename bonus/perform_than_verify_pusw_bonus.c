@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 05:47:19 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/24 03:40:57 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/24 21:22:54 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	apply_command(t_node **stack_a, t_node **stack_b, char *buffer)
 
 static int	apply_command_1(t_node **stack_a, t_node **stack_b, char *buffer)
 {
-	ft_printf("%c%c%c%c%c", 0, 0, 0, 0, 0);
 	if (!ft_strncmp(buffer, "rra\n", 4))
 		pusw_rra(stack_a, OUTPUT_COMMAND);
 	else if (!ft_strncmp(buffer, "rrb\n", 4))
