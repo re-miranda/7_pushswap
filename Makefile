@@ -6,7 +6,8 @@ SRCS_COMMON = ./utils/exit_functions.c \
 	./pusw_operators/pusw_tools_p.c \
 	./pusw_operators/pusw_tools_rr.c \
 	./pusw_operators/pusw_tools_rrr.c \
-	./pusw_operators/pusw_tools_ss.c
+	./pusw_operators/pusw_tools_ss.c \
+	./optimizer/command_stack.c
 
 NAME = push_swap
 INCLUDES = ./push_swap.h
@@ -16,8 +17,7 @@ SRCS = $(SRCS_COMMON) ./push_swap.c \
 	./sort_functions/find_middle_value.c \
 	./sort_functions/sort_stack.c \
 	./sort_functions/merge_sort.c \
-	./sort_functions/simple_sort.c \
-	./optimizer/command_stack.c
+	./sort_functions/simple_sort.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME_BONUS = push_swap_bonus
