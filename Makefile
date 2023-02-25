@@ -16,7 +16,8 @@ SRCS = $(SRCS_COMMON) ./push_swap.c \
 	./sort_functions/find_middle_value.c \
 	./sort_functions/sort_stack.c \
 	./sort_functions/merge_sort.c \
-	./sort_functions/simple_sort.c
+	./sort_functions/simple_sort.c \
+	./optimizer/command_stack.c
 OBJS = $(SRCS:%.c=%.o)
 
 NAME_BONUS = push_swap_bonus

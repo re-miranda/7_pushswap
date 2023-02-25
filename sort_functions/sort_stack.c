@@ -30,4 +30,5 @@ void	sort_stack(t_node *stack)
 		sort_size_5(sort_info);
 	else
 		merge_sort(sort_info);
+	command_stack(OUTPUT_COMMANDS);
 }

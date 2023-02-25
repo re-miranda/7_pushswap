@@ -15,9 +15,23 @@
 
 # define PARSE_EXIT_CODE 1
 # define STACK_EXIT_CODE 2
-# define OUTPUT_COMMAND 1
+# define OUTPUT_COMMAND 0
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+
+# define DESTROY_COMMANDS -1
+# define OUTPUT_COMMANDS 0
+# define SA 1
+# define SB 2
+# define SS 3
+# define PA 4
+# define PB 5
+# define RA 6
+# define RB 7
+# define RR 8
+# define RRA 9
+# define RRB 10
+# define RRR 11
 
 # include "libft/libft_gnl_printf.h"
 
@@ -35,6 +49,9 @@ typedef struct s_sort_info
 	int		lenght;
 	char	main_stack;
 }	t_sort_info;
+
+// OPTIMIZER FUNCTIONS
+int		command_stack(int command);
 
 // PARSE FUNCTOINS
 char	***parse_arguments(int argc, char *argv[]);

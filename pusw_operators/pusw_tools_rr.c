@@ -26,6 +26,8 @@ int	pusw_ra(t_node **stack, int output_command)
 		return (1);
 	if (output_command)
 		ft_putendl_fd("ra", 1);
+	else
+		command_stack(RA);
 	return (0);
 }
 
@@ -35,6 +37,8 @@ int	pusw_rb(t_node **stack, int output_command)
 		return (1);
 	if (output_command)
 		ft_putendl_fd("rb", 1);
+	else
+		command_stack(RB);
 	return (0);
 }
 
@@ -46,5 +50,7 @@ int	pusw_rr(t_node **stack_a, t_node **stack_b, int output_command)
 		return (1);
 	if (output_command)
 		ft_putendl_fd("rr", 1);
+	else
+		command_stack(RR);
 	return (0);
 }

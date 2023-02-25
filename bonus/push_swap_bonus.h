@@ -16,7 +16,7 @@
 # include "../push_swap.h"
 
 # undef OUTPUT_COMMAND
-# define OUTPUT_COMMAND 0
+# define OUTPUT_COMMAND 1
 
 void	perform_than_verify_pusw(t_node **stack_a);
 void	exit_error_and_free_stacks(t_node *stack_a, t_node *stack_b);
