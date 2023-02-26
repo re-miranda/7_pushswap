@@ -12,11 +12,6 @@
 
 #include "../push_swap.h"
 
-void	sort_a_size_2(t_sort_info sort_info);
-void	sort_b_size_2(t_sort_info sort_info);
-void	sort_a_size_3(t_sort_info sort_info);
-void	sort_b_size_3(t_sort_info sort_info);
-
 void	sort_a_size_2(t_sort_info sort_info)
 {
 	t_node	**stack_a;
