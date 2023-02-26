@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 02:23:24 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/25 02:23:25 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 01:05:03 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	command_stack(int command)
 	if (!stack)
 	{
 		free_stack(stack);
-		return (-1); // implementar erro
+		return (-1);
 	}
 	stack->previus->value = command;
 	return (0);
