@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/24 03:50:27 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 01:41:49 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define PARSE_EXIT_CODE 1
 # define STACK_EXIT_CODE 2
-# define OUTPUT_COMMAND 0
+# define OUTPUT_COMMAND 1
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 

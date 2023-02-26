@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 05:49:29 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/24 01:41:43 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/02/26 01:41:27 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../push_swap.h"
 
 # undef OUTPUT_COMMAND
-# define OUTPUT_COMMAND 1
+# define OUTPUT_COMMAND 0
 
 void	perform_than_verify_pusw(t_node **stack_a);
 void	exit_error_and_free_stacks(t_node *stack_a, t_node *stack_b);
