@@ -52,6 +52,8 @@ typedef struct s_sort_info
 
 // OPTIMIZER FUNCTIONS
 int		command_stack(int command);
+void	filter_stack(t_node *stack);
+void	delete_node(t_node *stack);
 
 // PARSE FUNCTOINS
 char	***parse_arguments(int argc, char *argv[]);

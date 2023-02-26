@@ -21,7 +21,7 @@ int	command_stack(int command)
 
 	if (command == OUTPUT_COMMANDS)
 	{
-		// filter_stack(stack);
+		filter_stack(stack);
 		output_stack(stack);
 		free_stack(stack);
 		return (0);

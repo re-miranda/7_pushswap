@@ -12,3 +12,27 @@
 
 #include "../push_swap.h"
 
+static t_node	*stash_node(t_node	**stack);
+
+void	delete_node(t_node *stack)
+{
+	t_node	*swap;
+
+	swap = stash_node(&stack);
+	free(swap);
+}
+
+static t_node	*stash_node(t_node	**stack)
+{
+	t_node	*stash_node;
+
+	stash_node = *stack;
+	if ((*stack)->next == *stack)
+		*stack = NULL;
+	else
+	{
+		(*stack)->previus->next = (*stack)->next;
+		(*stack)->next->previus = (*stack)->previus;
+	}
+	return (stash_node);
+}

@@ -7,7 +7,9 @@ SRCS_COMMON = ./utils/exit_functions.c \
 	./pusw_operators/pusw_tools_rr.c \
 	./pusw_operators/pusw_tools_rrr.c \
 	./pusw_operators/pusw_tools_ss.c \
-	./optimizer/command_stack.c
+	./optimizer/command_stack.c \
+	./optimizer/filter_command_stack.c \
+	./optimizer/delete_command_stack.c
 
 NAME = push_swap
 INCLUDES = ./push_swap.h
