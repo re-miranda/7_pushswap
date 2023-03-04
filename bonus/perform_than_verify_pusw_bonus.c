@@ -12,7 +12,7 @@
 
 #include "push_swap_bonus.h"
 
-static void	apply_command(t_node **stack_a, t_node **stack_b, char *buffer);
+static int	apply_command(t_node **stack_a, t_node **stack_b, char *buffer);
 static int	apply_command_1(t_node **stack_a, t_node **stack_b, char *buffer);
 static int	apply_command_2(t_node **stack_a, t_node **stack_b, char *buffer);
 
@@ -20,25 +20,36 @@ void	perform_than_verify_pusw(t_node **stack_a)
 {
 	char	*buffer;
 	t_node	*stack_b;
+	int		input_error;
 
 	buffer = get_next_line(0);
 	stack_b = NULL;
+	input_error = 0;
 	while (buffer)
 	{
-		apply_command(stack_a, &stack_b, buffer);
+		input_error = apply_command(stack_a, &stack_b, buffer);
 		free(buffer);
 		buffer = get_next_line(0);
 	}
+	if (input_error)
+		exit_error_and_free_stacks(*stack_a, stack_b);
 	verify_and_exit_if_error(*stack_a, stack_b);
 }
 
-static void	apply_command(t_node **stack_a, t_node **stack_b, char *buffer)
+static int	apply_command(t_node **stack_a, t_node **stack_b, char *buffer)
 {
+	static int	bypass;
+
+	if (bypass)
+		return (bypass);
 	if (apply_command_1(stack_a, stack_b, buffer))
 	{
 		if (apply_command_2(stack_a, stack_b, buffer))
-			exit_error_and_free_stacks(*stack_a, *stack_b);
+		{
+			bypass++;
+		}
 	}
+	return (bypass);
 }
 
 static int	apply_command_1(t_node **stack_a, t_node **stack_b, char *buffer)
