@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/03/04 20:52:19 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/03/05 13:58:12 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int		count_stack_elems(t_node *stack);
 void	sort_a_size_2(t_sort_info sort_info);
 void	sort_b_size_2(t_sort_info sort_info);
 void	sort_a_size_3(t_sort_info sort_info);
-void	sort_b_size_3(t_sort_info sort_info);
 void	sort_size_5(t_sort_info sort_info);
 void	merge_sort(t_sort_info sort_info);
 int		push_and_count(t_sort_info sort_info);
