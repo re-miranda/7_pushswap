@@ -28,9 +28,7 @@ SRCS_BONUS = $(SRCS_COMMON) ./bonus/push_swap_bonus.c \
 	./bonus/exit_functions_bonus.c
 OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 
-VAL_FLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes -s -q
-VAL = valgrind $(VAL_FLAGS)
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 CC = cc $(CFLAGS)
 RM = rm -rf
 
