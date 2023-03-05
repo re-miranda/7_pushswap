@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 02:23:24 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/26 01:05:03 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/03/04 20:51:47 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	output_stack(t_node *stack);
 static void	output_command(int command);
+static void	free_command_stack(t_node *stack);
 
 int	command_stack(int command)
 {
@@ -21,32 +22,28 @@ int	command_stack(int command)
 
 	if (command == OUTPUT_COMMANDS)
 	{
-		filter_stack(stack);
+		stack->previus->next = NULL;
+		stack->previus = NULL;
+		filter_stack(&stack);
 		output_stack(stack);
-		free_stack(stack);
+		free_command_stack(stack);
 		return (0);
 	}
 	if (command == DESTROY_COMMANDS)
 	{
-		free_stack(stack);
+		free_command_stack(stack);
 		return (0);
 	}
 	stack = get_next_node(stack);
 	if (!stack)
-	{
-		free_stack(stack);
 		return (-1);
-	}
 	stack->previus->value = command;
 	return (0);
 }
 
 static void	output_stack(t_node *stack)
 {
-	t_node	*last_stack_node;
-
-	last_stack_node = stack->previus;
-	while (stack != last_stack_node)
+	while (stack->next != NULL)
 	{
 		output_command(stack->value);
 		stack = stack->next;
@@ -78,4 +75,17 @@ static void	output_command(int command)
 		ft_putendl_fd("sb", 1);
 	if (command == SS)
 		ft_putendl_fd("ss", 1);
+}
+
+static void	free_command_stack(t_node *stack)
+{
+	t_node	*free_node;
+
+	while (stack->next != NULL)
+	{
+		free_node = stack;
+		stack = stack->next;
+		free(free_node);
+	}
+	free(stack);
 }

@@ -6,7 +6,7 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:20:42 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/26 01:41:49 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/03/04 20:52:19 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ typedef struct s_sort_info
 
 // OPTIMIZER FUNCTIONS
 int		command_stack(int command);
-void	filter_stack(t_node *stack);
-void	delete_node(t_node *stack);
+void	filter_stack(t_node **stack);
 
 // PARSE FUNCTOINS
 char	***parse_arguments(int argc, char *argv[]);

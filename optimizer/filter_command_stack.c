@@ -6,69 +6,41 @@
 /*   By: rmiranda <rmiranda@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 02:23:26 by rmiranda          #+#    #+#             */
-/*   Updated: 2023/02/25 02:23:27 by rmiranda         ###   ########.fr       */
+/*   Updated: 2023/03/04 20:53:52 by rmiranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	apply_filter_ra(t_node **stack_ptr);
-static void	apply_filter_rb(t_node **stack_ptr);
+static void	delete_two_nodes(t_node *stack);
 
-void	filter_stack(t_node *stack)
+void	filter_stack(t_node **stack)
 {
-	t_node	*last_stack_node;
+	t_node	*moving_stack;
 
-	last_stack_node = stack;
-	stack = stack->next;
-	while (stack != last_stack_node)
+	moving_stack = *stack;
+	if (moving_stack->next == NULL)
+		return ;
+	while (moving_stack->next->next != NULL)
 	{
-		if (stack->value == RA || stack->value == RRA)
-			apply_filter_ra(&stack);
-		if (stack->value == RB || stack->value == RRB)
-			apply_filter_rb(&stack);
-		stack = stack->next;
+		if ((moving_stack->value == RA && moving_stack->next->value == RRA)
+			|| (moving_stack->value == RRA && moving_stack->next->value == RA))
+			delete_two_nodes(moving_stack);
+		else if ((moving_stack->value == RB && moving_stack->next->value == RRB)
+			|| (moving_stack->value == RRB && moving_stack->next->value == RB))
+			delete_two_nodes(moving_stack);
+		else
+			moving_stack = moving_stack->next;
 	}
 }
 
-static void	apply_filter_ra(t_node **stack_ptr)
+static void	delete_two_nodes(t_node *stack)
 {
-	t_node	*stack;
-	t_node	*moving_node;
+	t_node	*swap;
 
-	stack = *stack_ptr;
-	moving_node = stack->next;
-	if (stack->value == RA && moving_node->value == RRA)
-	{
-		*stack_ptr = stack->previus;
-		delete_node(stack);
-		delete_node(moving_node);
-	}
-	else if (stack->value == RRA && moving_node->value == RA)
-	{
-		*stack_ptr = stack->previus;
-		delete_node(stack);
-		delete_node(moving_node);
-	}
-}
-
-static void	apply_filter_rb(t_node **stack_ptr)
-{
-	t_node	*stack;
-	t_node	*moving_node;
-
-	stack = *stack_ptr;
-	moving_node = stack->next;
-	if (stack->value == RB && moving_node->value == RRB)
-	{
-		*stack_ptr = stack->previus;
-		delete_node(stack);
-		delete_node(moving_node);
-	}
-	else if (stack->value == RRB && moving_node->value == RB)
-	{
-		*stack_ptr = stack->previus;
-		delete_node(stack);
-		delete_node(moving_node);
-	}
+	swap = stack->next;
+	stack->value = stack->next->next->value;
+	stack->next = stack->next->next->next;
+	free(swap->next);
+	free(swap);
 }
